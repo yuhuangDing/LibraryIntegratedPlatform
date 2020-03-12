@@ -25,7 +25,7 @@
             getBookList(){
                 this.$http.get('http://127.0.0.1:5000/api/getallbook').then(result=>{
                     if(result.status===200){
-                        console.log(result.body.message.results[0])
+                        console.log(result.body.message.results[0]);
                         this.bookList=result.body.message.results;
 
                         /********************************************/

@@ -43,7 +43,7 @@ var store=new Vuex.Store({
     mutations:{
         //共享数据读写方法
         addUserName(status,userName){
-            console.log("添加用户数据成功");
+            console.log("添加用户数据到store成功");
             status.username=userName;
         }
     },

@@ -35,6 +35,6 @@ var router=new VueRouter({
 
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
-})
+});
 
 export default router//暴露路由对象
