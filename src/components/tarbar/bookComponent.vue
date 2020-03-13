@@ -2,7 +2,7 @@
     <div>
         <h1 class="h1-titile-index">图书列表</h1>
         <div class="book-list">
-            <router-link to="/book/info" tag="div" class="book-list-item" v-for="item in bookList" :key="item.id">
+            <router-link tag="div"  :to=" '/book/bookinfo/'+item.id" class="book-list-item" v-for="item in bookList" :key="item.id">
                 <img class="booksimg" src="../../images/icon-man.png">
                 <h1 class="h1-titile">{{item.bookname}}</h1>
                 <div class="book-info">
@@ -25,12 +25,9 @@
             getBookList(){
                 this.$http.get('http://127.0.0.1:5000/api/getallbook').then(result=>{
                     if(result.status===200){
-                        console.log(result.body.message.results[0]);
+                       // console.log(result.body.message.results[0]);
                         this.bookList=result.body.message.results;
 
-                        /********************************************/
-
-                        /*************************************************/
                     }
                 })
             }

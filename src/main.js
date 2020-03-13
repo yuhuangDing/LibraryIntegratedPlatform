@@ -40,6 +40,7 @@ var store=new Vuex.Store({
         //共享数据区
         username:'',//保存登陆后的用户名，便于获取个人信息页面的数据载入,
         admin:false,
+        isbn:'',//保存isbn信息
     },
     mutations:{
         //共享数据读写方法
@@ -53,6 +54,14 @@ var store=new Vuex.Store({
             }else if(userps==='quit'){
                 state.admin=false;
             }
+        },
+        addisbn(state,Isbn){
+            state.isbn=Isbn;
+        },
+        delteAllAndExit(state){
+            state.isbn='';
+            state.username='';
+            state.admin=false;
 
         }
     },
@@ -64,6 +73,9 @@ var store=new Vuex.Store({
         },
         getAdmin:function (state) {
             return state.admin
+        },
+        getisbn:function (state) {
+            return state.isbn
         }
     }
 });

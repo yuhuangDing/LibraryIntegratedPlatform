@@ -31,7 +31,7 @@ var router=new VueRouter({
             {path:'/error',component:error},
             {path:'/member/su/userinfo',component:userinfo},
             {path:'/member/su/root',component:root},
-            {path:'/book/info',component:bookinfo}
+            {path:'/book/bookinfo/:id',component:bookinfo}
 
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
