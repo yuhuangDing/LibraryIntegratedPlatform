@@ -65,7 +65,8 @@
                             }else if(res.body.message.userps === 'admin'){
                                 /*路由跳转this.$router.push*/
                                 ///检测管理员
-                                this.$router.push('/member/root');
+                                this.$router.push('/member/su');
+                                this.$store.commit('openAdmin','admin')
                                 setCookie('username',this.userinfo.username,1000*60);
                             }else if(parseInt(res.body.message.userps) === 1){
                                 Toast(  "登录成功");
@@ -81,7 +82,6 @@
                 }else{
                     Toast({
                         message: '用户名或密码为空',
-                        position: 'bottom',
                         duration: 2000
                     });
                     this.userinfo.username=this.userinfo.password=''

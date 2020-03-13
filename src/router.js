@@ -15,7 +15,7 @@ import bookComponent from "./components/tarbar/bookComponent.vue";
 import error from "./components/cubcomponent/error.vue";
 import userinfo from "./components/cubcomponent/userinfo.vue";
 import root from "./components/cubcomponent/root.vue";
-import bookinfo from "./components/cubcomponent/bookinfo.vue";
+import bookinfo from "./components/book/bookinfo.vue";
 var router=new VueRouter({
     routes:
         [
@@ -30,7 +30,7 @@ var router=new VueRouter({
             {path:'/book',component:bookComponent},
             {path:'/error',component:error},
             {path:'/member/su/userinfo',component:userinfo},
-            {path:'/member/root',component:root},
+            {path:'/member/su/root',component:root},
             {path:'/book/info',component:bookinfo}
 
         ],

@@ -38,13 +38,22 @@ Vue.use(Vuex);
 var store=new Vuex.Store({
     state:{
         //共享数据区
-        username:'',//保存登陆后的用户名，便于获取个人信息页面的数据载入
+        username:'',//保存登陆后的用户名，便于获取个人信息页面的数据载入,
+        admin:false,
     },
     mutations:{
         //共享数据读写方法
-        addUserName(status,userName){
+        addUserName(state,userName){
             console.log("添加用户数据到store成功");
-            status.username=userName;
+            state.username=userName;
+        },
+        openAdmin(state,userps){
+            if(userps==='admin'){
+                state.admin=true;
+            }else if(userps==='quit'){
+                state.admin=false;
+            }
+
         }
     },
     getters:{
@@ -52,6 +61,9 @@ var store=new Vuex.Store({
         getUserName:function (state) {
             return state.username;
             //获取用户名
+        },
+        getAdmin:function (state) {
+            return state.admin
         }
     }
 });

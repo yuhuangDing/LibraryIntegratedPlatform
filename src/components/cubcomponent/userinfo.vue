@@ -241,8 +241,8 @@
     }
     .infoinput:focus{
         border-style:solid;
-        border-color: #5db5f4;
-        box-shadow: 0 0 15px #03a9f4;
+        border-color: #e7c3f4;
+        box-shadow: 0 0 15px #f285f4;
 
     }
     .upadtepwd-h3{

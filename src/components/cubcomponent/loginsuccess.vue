@@ -15,7 +15,7 @@
                 <li class="mui-table-view-cell">预约图书</li>
                 <li class="mui-table-view-cell">我的预约</li>
                 <li class="mui-table-view-cell">参与评论</li>
-
+                <router-link class="mui-table-view-cell" to="/member/su/root" tag="li" v-show="flag">管理员面板</router-link>
             </ul>
         </div>
         <div class="myicon-btn">
@@ -33,29 +33,38 @@
         name: "loginsuccess",
         data(){
             return {
+                flag:false,//管理员选项展示
                 name:''
             }
         },
         mounted(){
             /*页面挂载获取保存的cookie值，渲染到页面上*/
-            let uname = getCookie('username')
-            this.name = uname
+            let uname = getCookie('username');
+            this.name = uname;
+            if(this.$store.getters.getAdmin===true){
+                this.flag=true;
+            }else{
+                this.flag=false;
+            }
             /*如果cookie不存在，则跳转到登录页*/
             if(uname === ""){
-                this.$router.push('/member/loginuser')
+                this.$router.push('/member/loginuser');
             }
+
         },
         methods:{
             quit(){
-                delCookie('username')
+                delCookie('username');
+                this.$store.commit('openAdmin','quit');
+
                 Toast({
                     message: '退出成功',
-                    position: 'bottom',
                     duration: 5000
                 });
                 this.$router.push('/home')
             }
-        }
+        },
+
     }
 </script>
 

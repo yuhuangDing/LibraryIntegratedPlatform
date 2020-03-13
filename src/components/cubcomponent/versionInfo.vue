@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="mui-card" v-for="item in version" :key="item.id">
-            <div class="mui-card-header">当前版本：{{item.version}}</div>
+            <div class="mui-card-header">版本：{{item.version}}</div>
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
                     <p>版本信息：</p>
@@ -25,8 +25,9 @@
                 {id:4,version:"Build-0.3.1",info:"新增个人信息页面，待完善",bug:"暂无"},
                 {id:5,version:"Build-0.3.2",info:"修复主页上方导航条显示返回按钮的错误",bug:"暂无"},
                 {id:6,version:"Build-0.4",info:"node服务端基础服务已可用，登陆测试与管理员登陆正常",bug:"处于管理员页面下点击 我的 按钮出现跳转回普通个人信息的页面"},
-                {id:6,version:"Build-0.4.1",info:"完成图书页面node服务端数据传递与展示，修复全局页面多余非空白部分，优化个人信息展示页面，新增信息修改和密码修改按钮",bug:"0.4版本bug暂未处理，图书页面图片暂时无法展示"}
-                ]
+                {id:7,version:"Build-0.4.1",info:"完成图书页面node服务端数据传递与展示，修复全局页面多余非空白部分，优化个人信息展示页面，新增信息修改和密码修改按钮",bug:"0.4版本bug暂未处理，图书页面图片暂时无法展示"},
+                {id:8,version:"Build-0.4.2",info:"调整0.4版本进入管理员面板与退出出现的逻辑错误bug，修改页面Toast统一底部展示",bug:"0.4.1版本图书页面图片暂时无法展示"},
+            ]
         }}
     }
 </script>

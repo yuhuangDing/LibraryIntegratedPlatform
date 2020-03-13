@@ -46,7 +46,6 @@
                 if(this.username.length===0||this.password.length===0||this.email.length===0||this.phone.length===0){
                     Toast({
                         message: '个人信息可能为空，请重新输入！',
-                        position: 'bottom',
                         duration: 5000
                     });
                     this.username=this.password=this.email=this.phone=''

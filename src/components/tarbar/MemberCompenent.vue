@@ -17,7 +17,7 @@
                 <li class="mui-table-view-cell" @click="yuyuebook">预约图书</li>
                 <li class="mui-table-view-cell" @click="myyuyue">我的预约</li>
                 <li class="mui-table-view-cell" @click="mypl">参与评论</li>
-                <router-link class="mui-table-view-cell" tag="li" to="/member/version">查看版本--开发日志</router-link>
+                <router-link class="mui-table-view-cell" tag="li" to="/member/version">查看版本&开发日志</router-link>
             </ul>
         </div>
 
