@@ -41,6 +41,7 @@ var store=new Vuex.Store({
         username:'',//保存登陆后的用户名，便于获取个人信息页面的数据载入,
         admin:false,
         isbn:'',//保存isbn信息
+        bookname:'',//保存图书名
     },
     mutations:{
         //共享数据读写方法
@@ -58,9 +59,14 @@ var store=new Vuex.Store({
         addisbn(state,Isbn){
             state.isbn=Isbn;
         },
+        addbookname(state,name){
+            console.log('vuex获得的书名'+name);
+            state.bookname=name;
+        },
         delteAllAndExit(state){
             state.isbn='';
             state.username='';
+            state.bookname='';
             state.admin=false;
 
         }
@@ -68,14 +74,18 @@ var store=new Vuex.Store({
     getters:{
         //共享数据访问方法
         getUserName:function (state) {
+            console.log("调用方法")
             return state.username;
             //获取用户名
         },
         getAdmin:function (state) {
-            return state.admin
+            return state.admin;
         },
         getisbn:function (state) {
-            return state.isbn
+            return state.isbn;
+        },
+        getbookname:function (state) {
+            return state.bookname;//获取书名
         }
     }
 });

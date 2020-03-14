@@ -69,7 +69,8 @@
                 this.$http.get("http://127.0.0.1:5000/api/bookinfo?id="+id).then(result=>{
                     if(result.status===200){
                         this.bookInfoList=result.body.message;
-                        this.$store.commit('addisbn',result.body.message.isbn)
+                        this.$store.commit('addisbn',result.body.message.isbn);
+                        this.$store.commit('addbookname',result.body.message.bookname);
                         if(parseInt(result.body.message.booknum)===0){
                             this.flag=false;
                             this.flag1=!this.flag1;

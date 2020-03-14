@@ -70,12 +70,16 @@
                                 this.$store.commit('addUserName',this.userinfo.username);
                                 setCookie('username',this.userinfo.username,1000*60);
                             }else if(parseInt(res.body.message.userps) === 1){
-                                Toast(  "登录成功");
+                                Toast(  {
+                                    message: "登录成功",
+                                    duration: 1000
+                                });
                                 setCookie('username',this.userinfo.username,1000*60);
                                 this.$store.commit('addUserName',this.userinfo.username);
+                                console.log(this.$store.getters.getUserName)
                                 setTimeout(function(){
                                     this.$router.push('/member/su')
-                                }.bind(this),1000);
+                                }.bind(this),300);
                             }
                         }
                     })

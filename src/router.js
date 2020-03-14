@@ -16,6 +16,7 @@ import error from "./components/cubcomponent/error.vue";
 import userinfo from "./components/cubcomponent/userinfo.vue";
 import root from "./components/cubcomponent/root.vue";
 import bookinfo from "./components/book/bookinfo.vue";
+import mycomments from "./components/cubcomponent/mycomments.vue";
 var router=new VueRouter({
     routes:
         [
@@ -31,7 +32,8 @@ var router=new VueRouter({
             {path:'/error',component:error},
             {path:'/member/su/userinfo',component:userinfo},
             {path:'/member/su/root',component:root},
-            {path:'/book/bookinfo/:id',component:bookinfo}
+            {path:'/book/bookinfo/:id',component:bookinfo},
+            {path:'/member/su/mycomment',component:mycomments},
 
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，

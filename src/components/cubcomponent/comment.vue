@@ -93,6 +93,7 @@
                     }
                     //url地址，数据对象   ,定于提交表单数据格式
                     var nowisbn=this.$store.getters.getisbn;
+                    var nowbookname=this.$store.getters.getbookname;
                     var nowusername=uname;console.log(nowusername+'*****这个是用户名')
                     var formatDate = function (date) {
                         var y = date.getFullYear();
@@ -114,6 +115,7 @@
                     var data={
                         username:nowusername,
                         bookisbn:nowisbn,
+                        bookname:nowbookname,
                         comment:this.msg.trim(),
                         time:nowtime
                     };
@@ -126,6 +128,8 @@
                             this.comments.unshift(cmt);
                             this.msg="";
 
+                        }else {
+                            Toast('评论失败');
                         }
                     });
                 }

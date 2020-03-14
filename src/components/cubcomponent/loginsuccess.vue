@@ -14,7 +14,7 @@
                 <router-link to="/member/su/userinfo" class="mui-table-view-cell" tag="li">个人信息</router-link>
                 <li class="mui-table-view-cell">预约图书</li>
                 <li class="mui-table-view-cell">我的预约</li>
-                <li class="mui-table-view-cell">参与评论</li>
+                <router-link class="mui-table-view-cell" to="/member/su/mycomment" tag="li" >我的评论</router-link>
                 <router-link class="mui-table-view-cell" to="/member/su/root" tag="li" v-show="flag">管理员面板</router-link>
             </ul>
         </div>
@@ -59,7 +59,7 @@
 
                 Toast({
                     message: '退出成功',
-                    duration: 5000
+                    duration: 1000
                 });
                 this.$router.push('/home')
             }

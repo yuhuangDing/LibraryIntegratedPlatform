@@ -46,7 +46,7 @@
                 if(this.username.length===0||this.password.length===0||this.email.length===0||this.phone.length===0){
                     Toast({
                         message: '个人信息可能为空，请重新输入！',
-                        duration: 5000
+                        duration: 1000
                     });
                     this.username=this.password=this.email=this.phone=''
                 }else {
@@ -55,7 +55,10 @@
                         console.log(res);
                         console.log(res.body.list);
                         if(res.status === 200){
-                           Toast("注册成功");
+                           Toast({
+                               message: "注册成功",
+                               duration: 1000
+                           });
                             this.username=this.password=this.email=this.phone='';
                             /*注册成功之后再跳回登录页*/
                             setTimeout(function(){
