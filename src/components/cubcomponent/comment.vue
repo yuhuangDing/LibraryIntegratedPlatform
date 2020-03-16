@@ -9,9 +9,9 @@
                 <div class="cmt-title">
                     第{{i+1}}楼&nbsp;&nbsp; 用户:{{item.username}}&nbsp;&nbsp;发布时间：{{item.time|dataFormat('YYYY-MM-DD')}}
                 </div>
-                <div class="cmt-body">
-                    {{item.comment===''?'暂无评论':item.comment}}
-                </div>
+<!--                <div class="cmt-body">-->
+<!--                    {{item.comment===''?'暂无评论':item.comment}}-->
+<!--                </div>-->
             </div>
         </div>
         <!----

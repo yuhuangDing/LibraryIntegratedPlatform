@@ -34,7 +34,7 @@
         </div>
         <div class="bookinfo-button">
             <div class="bookinfo-button-group">
-                <mt-button type="primary" size="normal" v-show="flag">预约图书</mt-button>
+                <mt-button type="primary" size="normal" v-show="flag" @click="orderbook">预约图书</mt-button>
                 <mt-button type="primary" size="normal" v-show="flag" @click="openComment">参与书评</mt-button>
                 <mt-button type="primary" size="normal" v-show="flag">查看简介</mt-button>
             </div>
@@ -87,6 +87,15 @@
                 //this.getcomments(this.isbn)
                 this.commentflag=!this.commentflag;
                 this.$refs.child.getComments();
+            },
+            orderbook(){
+                this.$router.push({
+                    path: "/book/orderbook/" +this.id,
+                    // name: 'mallList',
+                    // query: {
+                    //     id: this.id
+                    // }
+                })
             }
         },
         created() {
