@@ -2,7 +2,7 @@
     <div>
 
         <h3 class="mycomment-h3"><span class="mui-icon mui-icon-chatboxes mycomment-title-icon"></span>我的评论</h3>
-        <hr/>
+        <hr style="width: 75%"/>
         <div class="mui-card" v-show="flag">
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">

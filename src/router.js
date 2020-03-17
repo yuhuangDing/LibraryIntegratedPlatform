@@ -18,6 +18,7 @@ import root from "./components/cubcomponent/root.vue";
 import bookinfo from "./components/book/bookinfo.vue";
 import mycomments from "./components/cubcomponent/mycomments.vue";
 import ordeBook from "./components/book/ordeBook.vue";
+import myorder from "./components/cubcomponent/myorder.vue";
 var router=new VueRouter({
     routes:
         [
@@ -35,8 +36,8 @@ var router=new VueRouter({
             {path:'/member/su/root',component:root},
             {path:'/book/bookinfo/:id',component:bookinfo},
             {path:'/member/su/mycomment',component:mycomments},
-            {path:'/book/orderbook/:id',component:ordeBook}
-
+            {path:'/book/orderbook/:id',component:ordeBook},
+            {path:'/myorder',component:myorder}
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
 });

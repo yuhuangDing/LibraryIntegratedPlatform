@@ -5,7 +5,10 @@
             <div class="mui-card-header">书名：{{bookInfoList.bookname}}</div>
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
-                    <img src="../../images/icon-man.png" >
+                    <div class="bookinfo-img">
+                        <img src="../../images/icon-man.png" >
+                    </div>
+
                 </div>
             </div>
             <div class="mui-card-footer">
@@ -29,22 +32,30 @@
                     </div>
 
                 </div>
-
             </div>
+
         </div>
         <div class="bookinfo-button">
             <div class="bookinfo-button-group">
                 <mt-button type="primary" size="normal" v-show="flag" @click="orderbook">预约图书</mt-button>
                 <mt-button type="primary" size="normal" v-show="flag" @click="openComment">参与书评</mt-button>
-                <mt-button type="primary" size="normal" v-show="flag">查看简介</mt-button>
+                <mt-button type="primary" size="normal" v-show="flag" @click="openbookinfo">查看简介</mt-button>
             </div>
             <div class="bookinfo-button-group">
                 <mt-button type="danger" size="normal" v-show="flag1" disabled>预约图书</mt-button>
                 <mt-button type="primary" size="normal" v-show="flag1"  @click="openComment">参与书评</mt-button>
-                <mt-button type="primary" size="normal" v-show="flag1">查看简介</mt-button>
+                <mt-button type="primary" size="normal" v-show="flag1" @click="openbookinfo">查看简介</mt-button>
             </div>
         </div>
         <comment v-show="commentflag" ref="child"></comment>
+        <div class="mui-card" v-show="bookinfoflag">
+            <div class="mui-card-content">
+                <div class="mui-card-content-inner">
+                    <p class="bookinfo-text"> {{bookInfoList.bookinfo}}</p>
+
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -62,6 +73,7 @@
                 flag1:false,//设定是否可借阅，预约，不可借阅提示
                 commentflag:false,//评论控制
                 comments:[],//保存评论数据
+                bookinfoflag:false//保存图书简介标志
             }
         },
         methods:{
@@ -88,6 +100,11 @@
                 //this.getcomments(this.isbn)
                 this.commentflag=!this.commentflag;
                 this.$refs.child.getComments();
+                this.bookinfoflag=false;
+            },
+            openbookinfo(){
+                this.bookinfoflag=!this.bookinfoflag;
+                this.commentflag=false;
             },
             orderbook(){
                 this.$router.push({
@@ -150,7 +167,13 @@
         justify-content: center;
 
     }
-    .bookinfo-button-group{
-        ;
+    .bookinfo-text{
+        margin: 5px;
+        font-size: 18px;
+        color: black;
+    }
+    .bookinfo-img{
+        display: flex;
+        justify-content: center;
     }
 </style>

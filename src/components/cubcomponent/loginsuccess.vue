@@ -1,6 +1,6 @@
 <template>
     <div class="member-container">
-        <h3 class="myicon-heartext">欢迎访问xx图书馆</h3>
+        <h3 class="myicon-heartext">欢迎访问A710图书馆</h3>
         <div class="myicon">
             <img src="../../images/yh.png" class="myicon-img">
         </div>
@@ -12,8 +12,8 @@
 
             <ul class="mui-table-view">
                 <router-link to="/member/su/userinfo" class="mui-table-view-cell" tag="li">个人信息</router-link>
-                <li class="mui-table-view-cell">预约图书</li>
-                <li class="mui-table-view-cell">我的预约</li>
+                <router-link class="mui-table-view-cell" to="/book" tag="li">预约图书</router-link>
+                <router-link class="mui-table-view-cell" to="/myorder" tag="li">我的预约</router-link>
                 <router-link class="mui-table-view-cell" to="/member/su/mycomment" tag="li" >我的评论</router-link>
                 <router-link class="mui-table-view-cell" to="/member/su/root" tag="li" v-show="flag">管理员面板</router-link>
             </ul>
