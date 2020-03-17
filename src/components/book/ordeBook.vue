@@ -25,7 +25,7 @@
             <mt-datetime-picker ref="pickerStartTime"
                                 type="datetime"
                                 v-model="pickerValueStartTime"
-                                :startDate="new Date()"
+                                :slots="new Date()"
                                 @confirm="this.handleConfirmStartTime">
             </mt-datetime-picker>
             <span class="node-text-span">
@@ -51,6 +51,7 @@
                 id:this.$route.params.id,
                 bookInfoList:'',
                 name:'',
+                ishavebookinfo:'0',
             }
         },
         mounted() {
@@ -61,7 +62,7 @@
             if(uname === ""){
                 this.$router.push('/error');
             }
-
+            this.ishavebook();
         },
         methods:{
             startTime () {
@@ -82,52 +83,79 @@
                 });
 
             },
-            addOrderbook(){
-                var formatDate = function (date) {
-                    var y = date.getFullYear();
-                    var m = date.getMonth() + 1;
-                    m = m < 10 ? ('0' + m) : m;
-                    var d = date.getDate();
-                    d = d < 10 ? ('0' + d) : d;
-                    var h = date.getHours();
-                    var minute = date.getMinutes();
-                    minute = minute < 10 ? ('0' + minute) : minute;
-                    var second= date.getSeconds();
-                    second = minute < 10 ? ('0' + second) : second;
-                    return y + '-' + m + '-' + d+' '+h+':'+minute+':'+ second;
-                };
+            ishavebook(){
                 let data={
                     username:this.name,
-                    bookname:this.bookInfoList.bookname,
-                    isbn:this.bookInfoList.isbn,
-                    orderbooknum:1,
-                    ordertime:formatDate(new Date()),
-                    recivertime:formatDate(this.pickerValueStartTime),
-                    isok:'N',
-
+                    isbn:localStorage.getItem('isbn')
                 };
-                if(this.bookInfoList.booknum-1<0){
+                this.$http.post('http://127.0.0.1:5000/api/ishavebook',data).then(result=>{
+                    if(result.status===200){
+                        this.ishavebookinfo=JSON.parse(result.body.message);
+                        console.log('+++'+result.body.message);
+                    }else{
+                        Toast({
+                            message:"获取数据失败，检查连接",
+                            duration: 3000
+                        })
+                    }
+                });
+            },
+            addOrderbook(){
+                if(this.ishavebookinfo.count>=1){
                     Toast({
-                            message: '预约失败，馆藏不足',
-                            duration: 5000
-                        });
-                }else{
-                    this.$http.post('http://127.0.0.1:5000/api/orderbook',data).then(result=>{
-                        if(result.status===200){
-                            Toast({
-                                message: '预约成功，请在约定时间到馆取书',
-                                duration: 5000
-                            });
-                        }
-                    });
+                        message:"当前存在预约图书，不可再预约",
+                        duration: 3000});
                 }
+                else {
+                    var formatDate = function (date) {
+                        var y = date.getFullYear();
+                        var m = date.getMonth() + 1;
+                        m = m < 10 ? ('0' + m) : m;
+                        var d = date.getDate();
+                        d = d < 10 ? ('0' + d) : d;
+                        var h = date.getHours();
+                        var minute = date.getMinutes();
+                        minute = minute < 10 ? ('0' + minute) : minute;
+                        var second = date.getSeconds();
+                        second = minute < 10 ? ('0' + second) : second;
+                        return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+                    };
+                    let data = {
+                        username: this.name,
+                        bookname: this.bookInfoList.bookname,
+                        isbn: this.bookInfoList.isbn,
+                        orderbooknum: 1,
+                        ordertime: formatDate(new Date()),
+                        recivertime: formatDate(this.pickerValueStartTime),
+                        isok: 'N',
+
+                    };
+                    if (this.bookInfoList.booknum - 1 < 0) {
+                        Toast({
+                            message: '预约失败，馆藏不足',
+                            duration: 3000
+                        });
+                    } else {
+                        this.$http.post('http://127.0.0.1:5000/api/orderbook', data).then(result => {
+                            if (result.status === 200) {
+                                Toast({
+                                    message: '预约成功，请在约定时间到馆取书',
+                                    duration: 3000
+                                });
+                            }
+                        });
+                    }
+                }
+                this.ishavebook();
             }
 
         },
         created() {
-            console.log("子组件获得的id"+this.id)
+          //  console.log("子组件获得的id"+this.id)
             this.getBookInfo(this.id);
-        }
+            this.ishavebook();
+        },
+
     }
 </script>
 

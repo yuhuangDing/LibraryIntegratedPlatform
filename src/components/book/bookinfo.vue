@@ -70,6 +70,7 @@
                     if(result.status===200){
                         this.bookInfoList=result.body.message;
                         this.$store.commit('addisbn',result.body.message.isbn);
+                        localStorage.setItem('isbn',result.body.message.isbn);
                         this.$store.commit('addbookname',result.body.message.bookname);
                         if(parseInt(result.body.message.booknum)===0){
                             this.flag=false;
