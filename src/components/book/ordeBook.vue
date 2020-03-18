@@ -2,7 +2,7 @@
     <div>
 
         <div class="imgdiv">
-            <img class="ordericon-img" src="../../images/yy.png">
+            <img class="ordericon-img" src="../../images/yy.png" alt="">
         </div>
         <h3 class="ordertitle-h3">预约图书</h3>
         <hr class="orderbook-hr"/>
@@ -42,7 +42,7 @@
 <script>
 
     import {Toast} from "mint-ui";
-    import {setCookie,getCookie,delCookie} from '../../assets/js/cookie.js'
+    import {getCookie} from '../../assets/js/cookie.js'
     export default {
         name: "ordeBook",
         data(){
@@ -66,10 +66,10 @@
         },
         methods:{
             startTime () {
-                this.$refs.pickerStartTime.open()
+                this.$refs.pickerStartTime.open();
             },
             handleConfirmStartTime () {
-                console.log(this.pickerValueStartTime)
+                console.log(this.pickerValueStartTime);
             },
             gobackbookinfo(){
                 this.$router.go(-1);
@@ -78,7 +78,7 @@
                 this.$http.get("http://127.0.0.1:5000/api/bookinfo?id="+id).then(result=>{
                     if(result.status===200){
                         this.bookInfoList=result.body.message;
-                        console.log(result.body.message)
+                        console.log(result.body.message);
                     }
                 });
 
@@ -96,7 +96,7 @@
                         Toast({
                             message:"获取数据失败，检查连接",
                             duration: 3000
-                        })
+                        });
                     }
                 });
             },
