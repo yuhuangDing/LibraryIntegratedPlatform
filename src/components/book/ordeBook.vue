@@ -101,7 +101,8 @@
                 });
             },
             addOrderbook(){
-                if(this.ishavebookinfo.count>=1){
+                //this.ishavebookinfo.count>=1&&
+                if(parseInt(this.ishavebookinfo.sum)>=1){
                     Toast({
                         message:"当前存在预约图书，不可再预约",
                         duration: 3000});

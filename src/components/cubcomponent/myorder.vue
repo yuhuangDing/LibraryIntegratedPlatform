@@ -20,15 +20,16 @@
                     <p class="mycomment-pl-p" >
                         预约情况：{{item.isok}}
                         <img v-show="item.isok==='完成'" src="../../images/ok.png" width="25px" height="25px" class="myorder-icon">
-                       <img v-show="item.isok!=='完成'" src="../../images/dd.png" width="25px" height="25px" class="myorder-icon">
+                        <img v-show="item.isok==='待审核'" src="../../images/dd.png" width="25px" height="25px" class="myorder-icon">
+                        <img v-show="item.isok==='已取消'" src="../../images/qx.png" width="25px" height="25px" class="myorder-icon">
                     </p>
                 </div>
             </div>
-            <div class="mui-card-content" v-show="item.isok!=='完成'">
+            <div class="mui-card-content" v-show="item.isok!=='完成'&&item.isok!=='已取消'">
                 <div class="mui-card-content-inner">
                     <div class="cancel-order">
                         <span style="line-height: 24.8px">图书馆帮助热线：400-111-1111</span>
-                        <a href="#" class="mycomment-a-delete" @click.prevent="cancleorder">
+                        <a href="#" class="mycomment-a-delete" @click.prevent="cancleorder(item.id)">
                             <span class="mui-icon mui-icon-close"></span>取消预约</a>
                     </div>
                 </div>
@@ -40,6 +41,7 @@
 
 <script>
     import {getCookie} from "../../assets/js/cookie";
+    import {Toast} from "mint-ui";
 
     export default {
         name: "myorder",
@@ -72,6 +74,10 @@
                                 {
                                     item.isok='待审核';
                                 }
+                                else if(item.isok==='K')
+                                {
+                                    item.isok='已取消';
+                                }
                             })
 
                         }
@@ -79,8 +85,29 @@
                     }
                 });
             },
-            cancleorder(){
-
+            cancleorder(id){
+                var delorder='';
+                this.Myorder.some((item,i)=>{
+                    if(item.id===id){
+                        item.isok='已取消';
+                        delorder=item;
+                        return;
+                    }
+                });
+                let data={username:delorder.username,isbn:delorder.isbn};
+                this.$http.post('http://127.0.0.1:5000/api/delorder',data).then(result=>{
+                    if(result.status===200){
+                        Toast({
+                            message:"取消成功",
+                            duration: 1000,
+                        });
+                    }else {
+                        Toast({
+                            message:"取消失败",
+                            duration: 1000,
+                        });
+                    }
+                })
             }
         },
         created() {

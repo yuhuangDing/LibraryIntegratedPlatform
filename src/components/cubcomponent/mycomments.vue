@@ -15,7 +15,12 @@
             <div class="mui-card-header">
                 <div>
                     <p class="mycomment-pl-p">评论图书：{{item.bookname}}</p>
-                    <p class="mycomment-pl-p">评论时间：{{item.time|dataFormat}}<a href="#" class="mycomment-a-delete"><span class="mui-icon mui-icon-close"></span>删除此评论</a></p>
+                    <p class="mycomment-pl-p">评论时间：{{item.time|dataFormat}}
+                        <a v-show="item.displaycomment==='Y'" href="#" class="mycomment-a-delete" @click.prevent="delcomment(item.id)">
+                            <span class="mui-icon mui-icon-close"></span>删除评论
+                        </a>
+                        <a v-show="item.displaycomment==='N'" class="mycomment-a-delete1">此评论已删除</a>
+                    </p>
 
                 </div>
             </div>
@@ -35,6 +40,7 @@
 
 <script>
     import {setCookie,getCookie} from '../../assets/js/cookie.js'
+    import {Toast} from "mint-ui";
     export default {
         name: "mycomments",
         data(){
@@ -53,12 +59,39 @@
                         console.log(result.body);
                         if(result.body.message.length===0)
                             this.flag=true;
-                        else this.Mycomments=result.body.message;
+                        else {
+                            this.Mycomments=result.body.message;
+                        }
                        // console.log('/***********'+this.Mycomments)
                     }
                 });
             },
-
+            delcomment(id){
+                var mycommentdel='';
+                this.Mycomments.some((item,i)=>{
+                    if(item.id===id){
+                        mycommentdel=item;
+                        return;
+                    }
+                });
+                console.log(mycommentdel);
+                let data={username:mycommentdel.username,bookisbn:mycommentdel.bookisbn,comment:mycommentdel.comment};
+                console.log(data);
+                this.$http.post('http://127.0.0.1:5000/api/delcomment',data).then(result=>{
+                    if(result.status===200){
+                        Toast({
+                            message:"删除成功",
+                            duration: 1000,
+                        });
+                    }else {
+                        Toast({
+                            message:"删除失败",
+                            duration: 1000,
+                        });
+                    }
+                });
+                this.getMyComments();
+            }
         },
         created() {
             this.getMyComments();
@@ -98,5 +131,9 @@
     .mycomment-text{
         color: #6d6d72;
         font-size: 15px;
+    }
+   .mycomment-a-delete1{
+       margin-left: 20px;
+       color: #ff8c0e;
     }
 </style>

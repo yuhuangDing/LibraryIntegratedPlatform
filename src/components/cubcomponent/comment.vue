@@ -5,7 +5,7 @@
         <textarea placeholder="请输入评论内容（最多120字）" maxlength="120" class="textare1" v-model="msg"></textarea>
         <mt-button type="primary" size="large" @click="postcomment">发表评论</mt-button>
         <div class="cmt-list" >
-            <div class="cmt-item" v-for="(item,i) in comments" :key="item.id">
+            <div class="cmt-item" v-for="(item,i) in comments" :key="item.id" >
                 <div class="cmt-title">
                     第{{i+1}}楼&nbsp;&nbsp; 用户:{{item.username}}&nbsp;&nbsp;发布时间：{{item.time|dataFormat('YYYY-MM-DD')}}
                 </div>
@@ -43,7 +43,7 @@
             mounted() {
                 this.$nextTick(function() {
                     this.$on('childmethods1', function() {
-                        console.log("调用子组件")
+                        console.log("调用子组件");
                         var isbn=this.$store.getters.getisbn;
                         this.$http.get("http://127.0.0.1:5000/api/getcomment?bookisbn="+isbn).then(result=>{
                             if(result.status===200)
@@ -118,13 +118,14 @@
                         bookisbn:nowisbn,
                         bookname:nowbookname,
                         comment:this.msg.trim(),
-                        time:nowtime
+                        time:nowtime,
+                        displaycomment:'Y',
                     };
                     console.log('评论数据：'+data);
                     this.$http.post("http://127.0.0.1:5000/api/postcomment",data).then(function (result) {
                         if(result.body.status===200){
                             //拼接评论对象
-                            var cmt={username:nowusername,time:nowtime, comment:this.msg.trim()};
+                            var cmt={username:nowusername,time:nowtime, comment:this.msg.trim(),displaycomment:'Y'};
                             Toast('评论成功');
                             this.comments.unshift(cmt);
                             this.msg="";
@@ -138,11 +139,19 @@
             }
         },
         props:["id"],
-        mounted() {
-            console.log('created'+this.mycomments)
-            this.getComments()
-            this.$emit('getcomment')
-
+        created() {
+            //console.log('created'+this.mycomments);
+            this.getComments();
+            this.$emit('getcomment');
+        },
+        updated() {
+            this.comments.forEach((item,index)=>{
+                if(item.displaycomment==='N') {
+                    //   console.log("切去"+JSON.stringify(item));
+                    //console.log(index);
+                    this.comments.splice(index, 1);
+                }
+            });
         }
     }
 </script>
