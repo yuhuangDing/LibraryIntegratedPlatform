@@ -67,8 +67,10 @@
                                 ///检测管理员
                                 this.$router.push('/member/su');
                                 this.$store.commit('openAdmin','admin');
+
                                 this.$store.commit('addUserName',this.userinfo.username);
                                 setCookie('username',this.userinfo.username,1000*60);
+                                setCookie('Admin',"admin",1000*60);
                             }else if(parseInt(res.body.message.userps) === 1){
                                 Toast(  {
                                     message: "登录成功",

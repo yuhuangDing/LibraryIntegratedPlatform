@@ -19,6 +19,11 @@ import bookinfo from "./components/book/bookinfo.vue";
 import mycomments from "./components/cubcomponent/mycomments.vue";
 import ordeBook from "./components/book/ordeBook.vue";
 import myorder from "./components/cubcomponent/myorder.vue";
+import commentAd from "./components/root/commentAd.vue";
+import librarybookAd from "./components/root/librarybookAd.vue";
+import orderAd from "./components/root/orderAd.vue";
+import upbookAd from "./components/root/upbookAd.vue";
+import userAd from "./components/root/userAd.vue";
 var router=new VueRouter({
     routes:
         [
@@ -37,7 +42,12 @@ var router=new VueRouter({
             {path:'/book/bookinfo/:id',component:bookinfo},
             {path:'/member/su/mycomment',component:mycomments},
             {path:'/book/orderbook/:id',component:ordeBook},
-            {path:'/myorder',component:myorder}
+            {path:'/myorder',component:myorder},
+                {path:'/member/su/root/cAd',component:commentAd},
+                {path:'/member/su/root/lAd',component:librarybookAd},
+                {path:'/member/su/root/oAd',component:orderAd},
+                {path:'/member/su/root/ubAd',component:upbookAd},
+                {path:'/member/su/root/uAd',component:userAd},
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
 });
