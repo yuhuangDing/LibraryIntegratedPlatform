@@ -43,11 +43,11 @@ var router=new VueRouter({
             {path:'/member/su/mycomment',component:mycomments},
             {path:'/book/orderbook/:id',component:ordeBook},
             {path:'/myorder',component:myorder},
-                {path:'/member/su/root/cAd',component:commentAd},
-                {path:'/member/su/root/lAd',component:librarybookAd},
-                {path:'/member/su/root/oAd',component:orderAd},
-                {path:'/member/su/root/ubAd',component:upbookAd},
-                {path:'/member/su/root/uAd',component:userAd},
+            {path:'/member/su/root/cAd',component:commentAd},
+            {path:'/member/su/root/lAd',component:librarybookAd},
+            {path:'/member/su/root/oAd',component:orderAd},
+            {path:'/member/su/root/ubAd',component:upbookAd},
+            {path:'/member/su/root/uAd',component:userAd},
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
 });

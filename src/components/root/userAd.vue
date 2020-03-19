@@ -12,9 +12,9 @@
                     </div>
                 </div>
                 <div class="mui-card-footer">
-<!--                    <button type="button" class="mui-btn mui-btn-primary" @click="changepwd(item.id)">-->
-<!--                        密码重置-->
-<!--                    </button>-->
+                    <button type="button" class="mui-btn mui-btn-primary" @click="changepwd(item.id)">
+                        密码重置
+                    </button>
                     <button type="button" class="mui-btn mui-btn-danger" @click="deluser(item.id)">
                         删除用户
                     </button>
@@ -59,7 +59,7 @@
                     }
                 })
             },
-         /*   changepwd(id){
+           changepwd(id){
                 var cpwduser='';
                 this.alluserlist.forEach(item=>{
                     if(item.id===id){
@@ -67,9 +67,24 @@
                         return ;
                     }
                 });
+                let data={username:cpwduser.username,phone:cpwduser.phone};
                 console.log(cpwduser);
+                console.log(data);
+                this.$http.post('http://127.0.0.1:5000/api/adrebootpwd',data).then(result=>{
+                   if(result.status===200){
+                       Toast({
+                           message:"重置密码成功，初始密码为：1234",
+                           duration:4000
+                       });
+                   }else {
+                       Toast({
+                           message:"重置密码失败请重试",
+                           duration:3000
+                       });
+                   }
+               });
 
-            },*/
+            },
             deluser(id){
                 var deluser='';
                 this.alluserlist.forEach((item,i)=>{

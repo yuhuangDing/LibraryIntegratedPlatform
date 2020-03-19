@@ -1,5 +1,6 @@
 <template>
     <div class="bookinfo-box">
+
         <!--图书信息卡片-->
         <div class="mui-card">
             <div class="mui-card-header">书名：{{bookInfoList.bookname}}</div>
@@ -92,6 +93,7 @@
                 });
 
 
+
             },
             openComment(){
                 /*
@@ -114,11 +116,13 @@
                     //     id: this.id
                     // }
                 })
-            }
+            },
         },
         created() {
-            this.getBookInfo(this.id)
+            this.getBookInfo(this.id);
+
         },
+
 
     }
 </script>
