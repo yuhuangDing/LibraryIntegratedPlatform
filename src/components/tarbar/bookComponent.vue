@@ -3,7 +3,7 @@
         <h1 class="h1-titile-index">图书列表</h1>
         <div class="book-list">
             <router-link tag="div"  :to=" '/book/bookinfo/'+item.id" class="book-list-item" v-for="item in bookList" :key="item.id">
-                <img class="booksimg" src="../../images/icon-man.png">
+                <img class="booksimg" :src="item.bookimg">
                 <h1 class="h1-titile">{{item.bookname}}</h1>
                 <div class="book-info">
                     <p>{{item.bookwriter}}</p>

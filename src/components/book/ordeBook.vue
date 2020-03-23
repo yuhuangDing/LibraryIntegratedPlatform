@@ -42,6 +42,8 @@
 <script>
 
     import {Toast} from "mint-ui";
+    import { DatetimePicker } from 'mint-ui';
+
     import {getCookie} from '../../assets/js/cookie.js'
     export default {
         name: "ordeBook",
@@ -155,6 +157,7 @@
           //  console.log("子组件获得的id"+this.id)
             this.getBookInfo(this.id);
             this.ishavebook();
+
         },
 
     }
