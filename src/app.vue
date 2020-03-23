@@ -2,7 +2,7 @@
     <div class="app-container">
         <!--顶部导航条-->
 
-        <mt-header fixed title="A710图书馆  @Release">
+        <mt-header fixed title="图书馆  @Release">
             <div slot="left" @click="goback()"  v-show="flag">
                 <mt-button icon="back">返回</mt-button>
             </div>

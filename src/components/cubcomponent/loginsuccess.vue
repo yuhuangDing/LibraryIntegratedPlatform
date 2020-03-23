@@ -1,6 +1,6 @@
 <template>
     <div class="member-container">
-        <h3 class="myicon-heartext">欢迎访问A710图书馆</h3>
+        <h3 class="myicon-heartext">欢迎访问图书馆</h3>
         <div class="myicon">
             <img src="../../images/yh.png" class="myicon-img">
         </div>
