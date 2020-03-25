@@ -57,7 +57,7 @@
             getMyOrder(){
                 var name = getCookie('username');
                 //  console.log("http://127.0.0.1:5000/api/getuserorder?username="+name);
-                this.$http.get("http://127.0.0.1:5000/api/getuserorder?username="+name).then(result=>{
+                this.$http.get("api/getuserorder?username="+name).then(result=>{
                     if(result.status===200){
                         console.log(result.body);
                         if(result.body.message.length===0)
@@ -95,7 +95,7 @@
                     }
                 });
                 let data={username:delorder.username,isbn:delorder.isbn};
-                this.$http.post('http://127.0.0.1:5000/api/delorder',data).then(result=>{
+                this.$http.post('api/delorder',data).then(result=>{
                     if(result.status===200){
                         Toast({
                             message:"取消成功",

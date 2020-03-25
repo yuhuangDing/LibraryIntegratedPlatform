@@ -51,7 +51,7 @@
                     this.username=this.password=this.email=this.phone=''
                 }else {
                     let data = {'username':this.username,'password':this.password,'email':this.email,'phone':this.phone,userps:this.userps};
-                    this.$http.post('http://127.0.0.1:5000/api/adduser',data).then((res)=>{
+                    this.$http.post('api/adduser',data).then((res)=>{
                         console.log(res);
                         console.log(res.body.list);
                         if(res.status === 200){

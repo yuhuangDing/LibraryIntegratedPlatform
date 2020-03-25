@@ -45,7 +45,7 @@
                     this.$on('childmethods1', function() {
                         console.log("调用子组件");
                         var isbn=this.$store.getters.getisbn;
-                        this.$http.get("http://127.0.0.1:5000/api/getcomment?bookisbn="+isbn).then(result=>{
+                        this.$http.get("api/getcomment?bookisbn="+isbn).then(result=>{
                             if(result.status===200)
                             {
                                 // this.comments=result.body.message
@@ -68,7 +68,7 @@
             },
             getComments(){
                 var isbn=this.$store.getters.getisbn;
-                this.$http.get("http://127.0.0.1:5000/api/getcomment?bookisbn="+isbn).then(result=>{
+                this.$http.get("api/getcomment?bookisbn="+isbn).then(result=>{
                     if(result.status===200)
                     {
                       // this.comments=result.body.message
@@ -122,7 +122,7 @@
                         displaycomment:'Y',
                     };
                     console.log('评论数据：'+data);
-                    this.$http.post("http://127.0.0.1:5000/api/postcomment",data).then(function (result) {
+                    this.$http.post("api/postcomment",data).then(function (result) {
                         if(result.body.status===200){
                             //拼接评论对象
                             var cmt={username:nowusername,time:nowtime, comment:this.msg.trim(),displaycomment:'Y'};

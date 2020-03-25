@@ -77,7 +77,7 @@
                 this.$router.go(-1);
             },
             getBookInfo(id){
-                this.$http.get("http://127.0.0.1:5000/api/bookinfo?id="+id).then(result=>{
+                this.$http.get("api/bookinfo?id="+id).then(result=>{
                     if(result.status===200){
                         this.bookInfoList=result.body.message;
                         console.log(result.body.message);
@@ -90,7 +90,7 @@
                     username:this.name,
                     isbn:localStorage.getItem('isbn')
                 };
-                this.$http.post('http://127.0.0.1:5000/api/ishavebook',data).then(result=>{
+                this.$http.post('api/ishavebook',data).then(result=>{
                     if(result.status===200){
                         this.ishavebookinfo=JSON.parse(result.body.message);
                         console.log('+++'+result.body.message);
@@ -139,7 +139,7 @@
                             duration: 3000
                         });
                     } else {
-                        this.$http.post('http://127.0.0.1:5000/api/orderbook', data).then(result => {
+                        this.$http.post('api/orderbook', data).then(result => {
                             if (result.status === 200) {
                                 Toast({
                                     message: '预约成功，请在约定时间到馆取书',

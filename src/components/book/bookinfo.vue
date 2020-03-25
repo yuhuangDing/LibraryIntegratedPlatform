@@ -80,7 +80,7 @@
         },
         methods:{
             getBookInfo(id){
-                this.$http.get("http://127.0.0.1:5000/api/bookinfo?id="+id).then(result=>{
+                this.$http.get("api/bookinfo?id="+id).then(result=>{
                     if(result.status===200){
                         this.bookInfoList=result.body.message;
                         console.log('888'+JSON.stringify(result.body.message.bookimg))

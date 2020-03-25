@@ -54,7 +54,7 @@
                    var tusername=this.userinfo.username;
                     var tpassword=this.userinfo.password;
                     /*接口请求*/
-                    this.$http.get('http://127.0.0.1:5000/api/login?username='+tusername+'&password='+tpassword).then((res)=>{
+                    this.$http.get('api/login?username='+tusername+'&password='+tpassword).then((res)=>{
                         console.log(res);
                         console.log(res.body.message);
                         if(res.status===200){

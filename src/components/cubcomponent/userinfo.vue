@@ -95,7 +95,7 @@
         },
         methods:{
             getuserinfo(){
-                this.$http.get('http://127.0.0.1:5000/api/userinfo?username='+this.username).then((res)=>{
+                this.$http.get('api/userinfo?username='+this.username).then((res)=>{
                     console.log(res);
                     console.log(res.body.message);
                     this.email=res.body.message.email;
@@ -123,7 +123,7 @@
                 this.flag=!this.flag;
 
                 let data = {'username':this.username,'email':this.email,'phone':this.phone};
-                this.$http.post('http://127.0.0.1:5000/api/updateuserinfo',data).then((res)=>{
+                this.$http.post('api/updateuserinfo',data).then((res)=>{
                         console.log(res);
                         console.log(res.body);
                         if(res.status === 200){
@@ -135,7 +135,7 @@
             updatepwd(){
                 if(this.password===this.password1){
                     let data = {'username':this.username,'password':this.password};
-                    this.$http.post('http://127.0.0.1:5000/api/updateuserinfopwd',data).then((res)=>{
+                    this.$http.post('api/updateuserinfopwd',data).then((res)=>{
                         console.log(res);
                         console.log(res.body);
                         if(res.status === 200){

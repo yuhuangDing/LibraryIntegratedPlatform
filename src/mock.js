@@ -1,4 +1,4 @@
-
+/*
 const Mock = require("mockjs")
 /*var data = Mock.mock({
     'list|1-3': [{// 属性 list 的值是一个数组，其中含有 1 到 10 个元素
@@ -6,7 +6,7 @@ const Mock = require("mockjs")
         'username|1':"11",  //字符串
         'data':1
     }]
-})*/
+})
 const Random = Mock.Random;
 Mock.mock('/demo/login','post',{
     'list|1': [{// 属性 list 的值是一个数组，其中含有 1 到 10 个元素
@@ -29,4 +29,4 @@ Mock.mock('/demo/user/1','post',{
         'phone':"11"
     }]
 })
-
+*/

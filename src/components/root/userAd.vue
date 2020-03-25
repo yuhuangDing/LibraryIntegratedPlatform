@@ -43,7 +43,7 @@
         methods:{
             getalluser(){
                 let uname=getCookie('username');
-                this.$http.get('http://127.0.0.1:5000/api/Adgetalluser').then(result=>{
+                this.$http.get('api/Adgetalluser').then(result=>{
                     if(result.status===200){
                         this.alluserlist=result.body.message.results;
                         this.alluserlist.forEach((item,i)=>{
@@ -70,7 +70,7 @@
                 let data={username:cpwduser.username,phone:cpwduser.phone};
                 console.log(cpwduser);
                 console.log(data);
-                this.$http.post('http://127.0.0.1:5000/api/adrebootpwd',data).then(result=>{
+                this.$http.post('api/adrebootpwd',data).then(result=>{
                    if(result.status===200){
                        Toast({
                            message:"重置密码成功，初始密码为：1234",
@@ -96,7 +96,7 @@
                 });
                 let data={username:deluser.username,password:deluser.password,phone:deluser.phone}
               //  console.log(data);
-                this.$http.post('http://127.0.0.1:5000/api/deluserad',data).then(result=>{
+                this.$http.post('api/deluserad',data).then(result=>{
                     if(result.status===200)
                     {
                         Toast({
@@ -124,7 +124,7 @@
                     return ;
                 }
                 let data={username:cuser.username,password:cuser.password,phone:cuser.phone};
-                this.$http.post('http://127.0.0.1:5000/api/adaddroot',data).then(result=>{
+                this.$http.post('api/adaddroot',data).then(result=>{
                     if(result.status===200)
                     {
                         Toast({

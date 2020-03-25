@@ -21,7 +21,7 @@ import '../lib/mui/css/icon.css';
 //定于全局表单数据提交格式
 Vue.http.options.emulateJSON=true;
 //mock拦截器
-import mock from './mock.js';
+//import mock from './mock.js';
 
 //引入动画库
 import '../lib/animate.css'
@@ -89,7 +89,8 @@ var store=new Vuex.Store({
         }
     }
 });
-
+//全局请求地址
+Vue.http.options.root='http://134.175.245.202:5000';
 var vm=new Vue({
     el:'#app',
     render:c=>c(app),

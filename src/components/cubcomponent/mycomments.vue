@@ -54,7 +54,7 @@
             getMyComments(){
                 var name = getCookie('username');
               //  console.log("http://127.0.0.1:5000/api/getusercomment?username="+name);
-                this.$http.get("http://127.0.0.1:5000/api/getusercomment?username="+name).then(result=>{
+                this.$http.get("api/getusercomment?username="+name).then(result=>{
                     if(result.status===200){
                         console.log(result.body);
                         if(result.body.message.length===0)
@@ -77,7 +77,7 @@
                 console.log(mycommentdel);
                 let data={username:mycommentdel.username,bookisbn:mycommentdel.bookisbn,comment:mycommentdel.comment};
                 console.log(data);
-                this.$http.post('http://127.0.0.1:5000/api/delcomment',data).then(result=>{
+                this.$http.post('api/delcomment',data).then(result=>{
                     if(result.status===200){
                         Toast({
                             message:"删除成功",
