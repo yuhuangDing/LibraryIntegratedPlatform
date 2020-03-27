@@ -90,7 +90,7 @@ var store=new Vuex.Store({
     }
 });
 //全局请求地址
-Vue.http.options.root='http://134.175.245.202:5000';
+Vue.http.options.root='http://127.0.0.1:5000';
 var vm=new Vue({
     el:'#app',
     render:c=>c(app),

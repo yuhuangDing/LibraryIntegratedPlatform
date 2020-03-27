@@ -24,6 +24,7 @@ import librarybookAd from "./components/root/librarybookAd.vue";
 import orderAd from "./components/root/orderAd.vue";
 import upbookAd from "./components/root/upbookAd.vue";
 import userAd from "./components/root/userAd.vue";
+import orderBookManage from "./components/root/BookCommentsManage.vue";
 var router=new VueRouter({
     routes:
         [
@@ -48,6 +49,7 @@ var router=new VueRouter({
             {path:'/member/su/root/oAd',component:orderAd},
             {path:'/member/su/root/ubAd',component:upbookAd},
             {path:'/member/su/root/uAd',component:userAd},
+                {path:'/member/su/root/cAd/bcm',component:orderBookManage,name:'bcm'},
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
 });

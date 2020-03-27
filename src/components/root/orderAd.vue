@@ -1,15 +1,27 @@
 <template>
     <div>
-        预约管理
+       ss
     </div>
 </template>
 
 <script>
     export default {
-        name: "orderAd"
+        name: "orderAd",
+        data(){
+            return {
+
+            }
+        },
+        methods:{
+
+        },
+        created() {
+
+        }
     }
 </script>
 
 <style scoped>
+
 
 </style>
