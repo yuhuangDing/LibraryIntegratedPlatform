@@ -34,7 +34,8 @@
                 {id:11,version:"Build - 0.5.2",info:"新增图书预约页面，目前可以正常预约，相关逻辑待进一步完善",bug:"图片问题正在选择新方案"},
                 {id:12,version:"Build → Release - 0.6 ",info:"新增我的预约页面，新增预约图书页面，完善图书预约逻辑，目前图书预约与评论系统普通用户权限功能已全部开通",bug:"图片问题正在预处理新方案"},
                 {id:13,version:"Release - 0.6.1  ",info:"新增取消预约功能，新增删除评论功能",bug:"图片问题正在准备编码新方案"},
-                {id:14,version:"Release - 0.6.2 NEW！ ",info:"图片问题已经解决",bug:"暂无"},
+                {id:14,version:"Release - 0.6.2",info:"图片问题已经解决，完成管理员模块-评论管理",bug:"暂无"},
+                {id:15,version:"Release - 0.6.3 NEW！ ",info:"完成管理员模块-预约管理",bug:"暂无"},
 
             ],
                 version1:'',

@@ -22,6 +22,7 @@
                         <img v-show="item.isok==='完成'" src="../../images/ok.png" width="25px" height="25px" class="myorder-icon">
                         <img v-show="item.isok==='待审核'" src="../../images/dd.png" width="25px" height="25px" class="myorder-icon">
                         <img v-show="item.isok==='已取消'" src="../../images/qx.png" width="25px" height="25px" class="myorder-icon">
+                        <img v-show="item.isok==='等待取书'" src="../../images/kyjs.png" width="25px" height="25px" class="myorder-icon">
                     </p>
                 </div>
             </div>
@@ -30,7 +31,7 @@
                     <div class="cancel-order">
                         <span style="line-height: 24.8px">图书馆帮助热线：400-111-1111</span>
                         <a href="#" class="mycomment-a-delete" @click.prevent="cancleorder(item.id)">
-                            <span class="mui-icon mui-icon-close"></span>取消预约</a>
+                            <span class="mui-icon mui-icon-close "></span>取消预约</a>
                     </div>
                 </div>
             </div>
@@ -77,6 +78,10 @@
                                 else if(item.isok==='K')
                                 {
                                     item.isok='已取消';
+                                }
+                                else if(item.isok==='W')
+                                {
+                                    item.isok='等待取书';
                                 }
                             })
 
@@ -148,6 +153,7 @@
     }
     .mycomment-a-delete{
         color: red;
+
     }
     .cancel-order{
         display: flex;
