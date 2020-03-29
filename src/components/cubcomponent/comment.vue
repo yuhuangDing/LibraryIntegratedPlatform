@@ -74,7 +74,7 @@
                       // this.comments=result.body.message
                         this.comments=JSON.parse(result.body.message);//每当获取新评论时候不要老数据清空，应该是
 
-                        console.log('加载评论:'+this.comments )
+                        //console.log('加载评论:'+this.comments )
                     }else{
                         Toast('获取失败')
 

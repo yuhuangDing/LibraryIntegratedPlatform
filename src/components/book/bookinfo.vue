@@ -82,7 +82,7 @@
                 this.$http.get("api/bookinfo?id="+id).then(result=>{
                     if(result.status===200){
                         this.bookInfoList=result.body.message;
-                        console.log('888'+JSON.stringify(result.body.message.bookimg))
+                       // console.log('888'+JSON.stringify(result.body.message.bookimg))
                         this.$store.commit('addisbn',result.body.message.isbn);
                         localStorage.setItem('isbn',result.body.message.isbn);
                         this.$store.commit('addbookname',result.body.message.bookname);

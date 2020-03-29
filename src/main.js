@@ -18,6 +18,11 @@ Vue.use(VueResource);
 //引入Mui
 import '../lib/mui/css/mui.css';
 import '../lib/mui/css/icon.css';
+import mui from '../lib/mui/js/mui.js'
+Vue.prototype.mui=mui;
+
+
+
 //定于全局表单数据提交格式
 Vue.http.options.emulateJSON=true;
 //mock拦截器
@@ -90,7 +95,7 @@ var store=new Vuex.Store({
     }
 });
 //全局请求地址
-Vue.http.options.root='http://127.0.0.1:5000';
+Vue.http.options.root='http://192.168.31.142:5000';
 var vm=new Vue({
     el:'#app',
     render:c=>c(app),

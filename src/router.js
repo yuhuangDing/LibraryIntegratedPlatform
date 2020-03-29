@@ -25,6 +25,8 @@ import orderAd from "./components/root/orderAd.vue";
 import upbookAd from "./components/root/upbookAd.vue";
 import userAd from "./components/root/userAd.vue";
 import orderBookManage from "./components/root/BookCommentsManage.vue";
+import suggest from "./components/cubcomponent/suggest.vue";
+import suggestdeal from "./components/root/suggestdeal.vue";
 var router=new VueRouter({
     routes:
         [
@@ -39,6 +41,7 @@ var router=new VueRouter({
             {path:'/book',component:bookComponent},
             {path:'/error',component:error},
             {path:'/member/su/userinfo',component:userinfo},
+            {path:'/member/su/suggest',component:suggest},
             {path:'/member/su/root',component:root},
             {path:'/book/bookinfo/:id',component:bookinfo},
             {path:'/member/su/mycomment',component:mycomments},
@@ -49,7 +52,8 @@ var router=new VueRouter({
             {path:'/member/su/root/oAd',component:orderAd},
             {path:'/member/su/root/ubAd',component:upbookAd},
             {path:'/member/su/root/uAd',component:userAd},
-                {path:'/member/su/root/cAd/bcm',component:orderBookManage,name:'bcm'},
+            {path:'/member/su/root/cAd/bcm',component:orderBookManage,name:'bcm'},
+            {path:'/member/su/root/suggestdeal',component:suggestdeal},
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
 });

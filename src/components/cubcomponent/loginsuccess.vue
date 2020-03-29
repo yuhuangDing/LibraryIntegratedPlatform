@@ -9,12 +9,12 @@
 
         <hr/>
         <div>
-
             <ul class="mui-table-view">
                 <router-link to="/member/su/userinfo" class="mui-table-view-cell" tag="li">个人信息</router-link>
                 <router-link class="mui-table-view-cell" to="/book" tag="li">预约图书</router-link>
                 <router-link class="mui-table-view-cell" to="/myorder" tag="li">我的预约</router-link>
                 <router-link class="mui-table-view-cell" to="/member/su/mycomment" tag="li" >我的评论</router-link>
+                <router-link class="mui-table-view-cell" to="/member/su/suggest" tag="li" >投诉建议</router-link>
                 <router-link class="mui-table-view-cell" to="/member/su/root" tag="li" v-show="flag">管理员面板</router-link>
             </ul>
         </div>
@@ -56,6 +56,7 @@
         methods:{
             quit(){
                 delCookie('username');
+                delCookie('Admin');
                 this.$store.commit('openAdmin','quit');
 
                 Toast({

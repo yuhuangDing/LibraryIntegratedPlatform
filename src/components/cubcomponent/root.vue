@@ -22,9 +22,9 @@
                 <router-link to="/member/su/root/ubAd" tag="li" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                     <img src="../../images/sjts.png" class="icon-box-9">
                     <div class="mui-media-body">上架图书</div></a></router-link>
-                <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
+                <router-link  to="/member/su/root/suggestdeal" tag="li" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                     <img src="../../images/bugfk.png" class="icon-box-9">
-                    <div class="mui-media-body">Bug反馈</div></a></li>
+                    <div class="mui-media-body">反馈处理</div></a></router-link>
             </ul>
         </div>
     </div>

@@ -12,11 +12,11 @@
                 <label class="infotext">用户名：</label>
                 <input type="text" v-model="userinfo.username" class="infoinput"><br/>
                 <label class="infotext">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                <input type="password" v-model="userinfo.password"  class="infoinput">
+                <input type="password" v-model="userinfo.password" @keyup.enter="testinfo" class="infoinput">
                 </form>
         </div>
         <!-- 操作区域 -->
-        <mt-button size="large" class="mybutton" @click="testinfo" >登&nbsp;&nbsp;&nbsp;&nbsp;录</mt-button>
+        <mt-button size="large" class="mybutton" @keyup.enter="testinfo" @click="testinfo" >登&nbsp;&nbsp;&nbsp;&nbsp;录</mt-button>
         <div class="span-text" >
             <p >暂无账户点击<router-link to="/member/register">注册</router-link></p>
         </div>
@@ -67,7 +67,6 @@
                                 ///检测管理员
                                 this.$router.push('/member/su');
                                 this.$store.commit('openAdmin','admin');
-
                                 this.$store.commit('addUserName',this.userinfo.username);
                                 setCookie('username',this.userinfo.username,1000*60);
                                 setCookie('Admin',"admin",1000*60);
@@ -78,7 +77,7 @@
                                 });
                                 setCookie('username',this.userinfo.username,1000*60);
                                 this.$store.commit('addUserName',this.userinfo.username);
-                                console.log(this.$store.getters.getUserName)
+                                console.log(this.$store.getters.getUserName);
                                 setTimeout(function(){
                                     this.$router.push('/member/su')
                                 }.bind(this),300);
