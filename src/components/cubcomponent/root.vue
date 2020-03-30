@@ -18,7 +18,7 @@
                     <div class="mui-media-body">评论管理</div></a></router-link>
                 <router-link to="/member/su/root/lAd" tag="li" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                     <img src="../../images/gccx.png" class="icon-box-9">
-                    <div class="mui-media-body">馆藏查询</div></a></router-link>
+                    <div class="mui-media-body">馆藏管理</div></a></router-link>
                 <router-link to="/member/su/root/ubAd" tag="li" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                     <img src="../../images/sjts.png" class="icon-box-9">
                     <div class="mui-media-body">上架图书</div></a></router-link>

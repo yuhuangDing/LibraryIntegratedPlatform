@@ -47,6 +47,7 @@ var store=new Vuex.Store({
         admin:false,
         isbn:'',//保存isbn信息
         bookname:'',//保存图书名
+
     },
     mutations:{
         //共享数据读写方法
@@ -73,7 +74,6 @@ var store=new Vuex.Store({
             state.username='';
             state.bookname='';
             state.admin=false;
-
         }
     },
     getters:{
@@ -95,7 +95,8 @@ var store=new Vuex.Store({
     }
 });
 //全局请求地址
-Vue.http.options.root='http://192.168.31.142:5000';
+//Vue.http.options.root='http://227703ds34.qicp.vip:57167';
+Vue.http.options.root='http://127.0.0.1:5000'
 var vm=new Vue({
     el:'#app',
     render:c=>c(app),
