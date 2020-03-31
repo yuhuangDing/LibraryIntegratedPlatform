@@ -2,7 +2,8 @@
   "presets": [
     ["es2015", { "modules": false }]
   ],
-  "plugins": ["transform-runtime",["component", [
+  "plugins": ["transform-runtime",
+    ["component", [
     {
       "libraryName": "mint-ui",
       "style": true

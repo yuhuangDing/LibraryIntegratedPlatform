@@ -37,6 +37,8 @@ Vue.filter('dataFormat',function (dataStr,pattern="YYYY-MM-DD HH:mm:ss") {
     return moment(dataStr).format(pattern);
 
 });
+
+
 //引入vuex共享存储
 import Vuex from 'vuex';
 Vue.use(Vuex);
