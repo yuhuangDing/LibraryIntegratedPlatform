@@ -1,14 +1,18 @@
 <template>
     <div class="newsinfo-container">
         <!--    大标题-->
-        <h3 class="titile">{{newsinfo.title}}</h3>
+        <h3 class="titile">{{newsinfo.newstitle}}</h3>
         <p class="subtitile">
-            <span>发表时间：{{newsinfo.add_time|dataFormat}}</span>
-            <span>点击：{{newsinfo.click}}次</span>
+            <span>发表时间：{{newsinfo.newsdate|dataFormat}}</span>
+            <span>点击：{{newsinfo.times}}次</span>
         </p>
         <hr/>
         <!-- 新闻内容-->
-        <div class="content" v-html="newsinfo.content">
+        <div  >
+            <div class="content">
+                <img class="newspho" :src="newsinfo.newsimg" width="260px" height="180px">
+            </div>
+            <p class="newsinfo-p"> {{newsinfo.newsinfo}}</p>
         </div>
 
 
@@ -29,10 +33,10 @@
         },
         methods:{
             getnewsinfo(){
-                this.$http.get('http://www.liulongbin.top:3005/api/getnew/'+this.id).then(result=>{
-                    if(result.body.status===0){
-                        this.newsinfo=result.body.message[0]
-                        console.log(result.body)
+                this.$http.get('api/getidnews?id='+this.id).then(result=>{
+                    if(result.status===200){
+                        this.newsinfo=result.body.message[0];
+                        console.log(result.body.message)
                     }else{
                         Toast('获取失败')
                     }
@@ -62,5 +66,16 @@
         display: flex;
         justify-content: space-between;
 
+    }
+    .newsinfo-p{
+        font-size: 15px;
+        line-height: 22px;
+        text-indent: 2rem;
+    }
+    .content{
+        text-align: center;
+    }
+    .newspho{
+        margin: 0 auto;
     }
 </style>

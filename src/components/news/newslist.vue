@@ -7,12 +7,12 @@
                 <li class="mui-table-view-cell mui-media" v-for="item in newslist" :key="item.id">
 
                     <router-link :to="'/home/newsinfo/'+item.id">
-                        <img class="mui-media-object mui-pull-left" :src="item.img_url">
+                        <img class="mui-media-object mui-pull-left" :src="item.newsimg">
                         <div class="mui-media-body">
-                            <h3 class="myli" >{{item.title}}</h3>
+                            <h3 class="myli" >{{item.newstitle}}</h3>
                             <p class="mui-ellipsis">
-                                <span>发表时间：{{item.add_time|dataFormat}}</span>
-                                <span>点击：{{item.click}}次</span>
+                                <span>发表时间：{{item.newsdate|dataFormat}}</span>
+                                <span>点击：{{item.times}}次</span>
                             </p>
                         </div>
                     </router-link>
@@ -34,10 +34,10 @@
         }},
         methods:{
             getnewslist(){
-                this.$http.get('http://www.liulongbin.top:3005/api/getnewslist').then(result=>{
-                    if(result.body.status===0){
+                this.$http.get('api/getallnews').then(result=>{
+                    if(result.status===200){
                         //获取成功
-                        console.log(result.body.message)
+                      //  console.log(result.body.message);
                         this.newslist=result.body.message
                     }else{
                         Toast('获取失败')

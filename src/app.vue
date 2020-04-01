@@ -14,7 +14,7 @@
 
         <!--底部导航-->
         <!--底部  tarbar区域-->
-        <nav class="mui-bar mui-bar-tab">
+        <nav class="mui-bar mui-bar-tab mytarbar">
             <router-link class="mui-tab-item1 " to="/home">
                 <span class="mui-icon mui-icon-home"></span>
                 <span class="mui-tab-label">首页</span>
@@ -127,4 +127,7 @@
        overflow: hidden;
        text-overflow: ellipsis;
    }
+    .mytarbar{
+        margin-bottom: -2px;
+    }
 </style>
