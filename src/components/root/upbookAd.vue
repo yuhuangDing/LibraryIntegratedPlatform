@@ -38,14 +38,25 @@
                     </div>
                 </li>
                 <li class="mui-table-view-cell">
-                    <div class="mui-input-row">
+                    <div class="phobox">
+                        <br/>
                         <label>图书封面</label>
-                        <input type="text" class="mui-input-clear" placeholder="请输入图书数量" v-model="bookpho">
+                        <div  class="mui-btn  mui-btn-green input-file">上传封面
+                        <input
+                                class="file-input"
+                                type="file"
+                                ref="test"
+                                @change="toBase64"
+                                accept="image/jpeg, image/png, image/jpg"/></div>
+                        <img :src="imageUrl" width="50px" height="50px" class="upbook-icon1">
+
                     </div>
+
                 </li>
             </ul>
-            <span class="span-note">注意：所有信息均为必填！</span>
+            <span class="span-note">注意：所有信息均为必填 , 图片大小必须小于250Kb！</span>
             <mt-button type="primary" size="large" @click="addbook">提交</mt-button>
+
         </div>
 
 
@@ -55,6 +66,7 @@
 
 <script>
     import {Toast} from 'mint-ui';
+
     export default {
         name: "upbookAd",
         data(){
@@ -64,21 +76,58 @@
                 bookwriter:'',
                 booknum:'',
                 bookinfo:'',
-                bookpho:'',
+                imageUrl: "../../images/fm1.png",
 
             }
         },
         methods:{
             addbook(){
                 if(this.bookname.length===0||this.bookisbn.length===0||this.bookwriter.length===0
-                    ||this.booknum.length===0||this.bookinfo.length===0||this.bookpho.length===0){
+                    ||this.booknum.length===0||this.bookinfo.length===0){
                     Toast({
                         message:'存在空信息！',
                         duration:2000
                     });
-                    return
+                    return;
+                }else{
+                    let data={bookname:this.bookname,isbn:this.bookisbn,bookinfo:this.bookinfo,bookwriter:this.bookwriter,booknum:this.booknum,bookimg:this.imageUrl};
+                    this.$http.post('api/addnewbook',data).then(result=>{
+                        if(result.status===200){
+                            Toast({
+                                message:"上架图书成功！",
+                                duration: 1000
+                            });
+                            setTimeout(function(){
+                                this.$router.go(-1)
+                            }.bind(this),300);
+                        }else{
+                            Toast({
+                                message:"上架图书失败！",
+                                duration: 1000
+                            });
+                        }
+                    })
+                    console.log(data)
                 }
-            }
+
+               console.log(this.imageUrl)
+
+            },
+            toBase64(){
+                /****先将this赋给一个变量****/
+                var _this = this;
+             //   var file = this.$refs.test.files[0];
+                var file = document.querySelector('input[type=file]').files[0];
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function(e) {
+                    var str = reader.result;
+                    /****对变量进行赋值****/
+                    _this.imageUrl = decodeURIComponent(str);
+                };
+
+            },
+
 
         }
     }
@@ -94,6 +143,12 @@
         display: inline-block;
         vertical-align: middle;
     }
+    .upbook-icon1{
+        display: inline-block;
+        vertical-align: middle;
+        margin-top: -18px;
+        margin-left: 20px;
+    }
     .form-box{
         padding: 0 2%;
     }
@@ -105,5 +160,22 @@
         color: orange;
         font-size: 12px;
         margin-left: 8%;
+    }
+    .file-input{
+        margin-top: 20px;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        opacity: 0;
+        cursor: pointer;
+
+    }
+    .phobox{
+        flex-direction: column;
+        justify-items: center;
+    }
+    .input-file{
+        margin-top: -6px;
+        margin-left: 12%;
     }
 </style>

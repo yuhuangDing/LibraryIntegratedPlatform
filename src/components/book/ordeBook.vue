@@ -11,7 +11,7 @@
             <ul class="mui-table-view">
                 <li class="mui-table-view-cell">预约图书名称：{{bookInfoList.bookname}}</li>
                 <li class="mui-table-view-cell">预约图书ISBN：{{bookInfoList.isbn}}</li>
-                <li class="mui-table-view-cell">预约图书馆：A710图书馆</li>
+                <li class="mui-table-view-cell">预约图书馆：图书馆</li>
                 <li class="mui-table-view-cell">预约数量：1</li>
                 <li class="mui-table-view-cell ">
                     <span class="li-text">预约取书时间：</span>
