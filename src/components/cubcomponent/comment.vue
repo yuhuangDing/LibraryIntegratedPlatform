@@ -94,7 +94,8 @@
                     }
                     //url地址，数据对象   ,定于提交表单数据格式
                     var nowisbn=this.$store.getters.getisbn;
-                    var nowbookname=this.$store.getters.getbookname;
+                    var nowbookname=localStorage.getItem('bookname');
+                    console.log("获取书名"+nowbookname);
                     var nowusername=uname;console.log(nowusername+'*****这个是用户名')
                     var formatDate = function (date) {
                         var y = date.getFullYear();

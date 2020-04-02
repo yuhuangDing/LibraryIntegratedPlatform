@@ -86,6 +86,7 @@
                         this.$store.commit('addisbn',result.body.message.isbn);
                         localStorage.setItem('isbn',result.body.message.isbn);
                         this.$store.commit('addbookname',result.body.message.bookname);
+                        localStorage.setItem('bookname',result.body.message.bookname);
                         if(parseInt(result.body.message.booknum)===0){
                             this.flag=false;
                             this.flag1=!this.flag1;
