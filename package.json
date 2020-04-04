@@ -44,5 +44,13 @@
   "directories": {
     "lib": "lib"
   },
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cz-dyh/LibraryIntegratedPlatform.git"
+  },
+  "bugs": {
+    "url": "https://github.com/cz-dyh/LibraryIntegratedPlatform/issues"
+  },
+  "homepage": "https://github.com/cz-dyh/LibraryIntegratedPlatform#readme"
 }
