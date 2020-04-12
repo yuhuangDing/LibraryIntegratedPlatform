@@ -19,6 +19,9 @@
                 <li class="mui-table-view-cell" @click="mypl">参与评论</li>
                 <li class="mui-table-view-cell" @click="mypl">投诉建议</li>
                 <router-link class="mui-table-view-cell" tag="li" to="/member/version">查看版本&开发日志</router-link>
+                <hr/>
+                <h3 style="text-align: center">功能内测区</h3>
+                <router-link class="mui-table-view-cell" tag="li" to="/member/allseat">座位预约</router-link>
             </ul>
         </div>
 
