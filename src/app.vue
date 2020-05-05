@@ -23,7 +23,10 @@
                 <span class="mui-icon mui-icon-extra mui-icon-extra-xiaoshuo"></span>
                 <span class="mui-tab-label">图书</span>
             </router-link>
-
+            <router-link class="mui-tab-item1" to="/allseat">
+                <span class="mui-icon mui-icon-extra mui-icon-extra-class"></span>
+                <span class="mui-tab-label">座位预约</span>
+            </router-link>
             <!---<router-link class="mui-tab-item1" to="/shopcar">
                <span class="mui-icon mui-icon-extra mui-icon-extra-cart">
                    <span class="mui-badge">0</span></span>

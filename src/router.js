@@ -56,8 +56,8 @@ var router=new VueRouter({
             {path:'/member/su/root/uAd',component:userAd},
             {path:'/member/su/root/cAd/bcm',component:orderBookManage,name:'bcm'},
             {path:'/member/su/root/suggestdeal',component:suggestdeal},
-            {path:'/member/allseat',component:allseat},
-            {path:'/member/allseat/seatinfo',component:seatinfo},
+            {path:'/allseat',component:allseat},
+            {path:'/allseat/seatinfo',component:seatinfo},
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
 });

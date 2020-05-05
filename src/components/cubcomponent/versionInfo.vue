@@ -36,8 +36,8 @@
                 {id:13,version:"Release - 0.6.1  ",info:"新增取消预约功能，新增删除评论功能",bug:"图片问题正在准备编码新方案"},
                 {id:14,version:"Release - 0.6.2",info:"图片问题已经解决，完成管理员模块-评论管理",bug:"暂无"},
                 {id:15,version:"Release - 0.6.3",info:"完成管理员模块-预约管理",bug:"暂无"},
-                {id:15,version:"Release - 0.7 NEW！ ",info:"完成管理员模块-图书上架、反馈处理，图书馆基础功能基本完成",bug:"暂无"},
-
+                {id:16,version:"Release - 0.7 ",info:"完成管理员模块-图书上架、反馈处理，图书馆基础功能基本完成",bug:"暂无"},
+                {id:17,version:"Release - 0.8 NEW！ ",info:"内测新增座位预约模块",bug:"暂无"},
             ],
                 version1:'',
         }},

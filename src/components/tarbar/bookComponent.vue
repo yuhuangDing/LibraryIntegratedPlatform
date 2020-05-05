@@ -86,7 +86,7 @@
         width: 48%;
         /*每行排两个*/
         border: 1px solid #cccccc;
-        box-shadow: 0 0 8px #6641e2;
+        box-shadow: 1px 1px 2px #8b8b8e;
         margin: 4px 0;
         padding: 4px;
         display: flex;
@@ -96,7 +96,9 @@
 
     }
     .booksimg{
-        width: 100%;
+        width: 170px;
+        height: 210px;
+        margin: 2px 0;
     }
     .h1-titile{
 
@@ -111,7 +113,8 @@
     }
     .search-box{
         width: 80%;
-         margin: 0 10%;
+        margin: 0 10%;
+        padding-right: 2%;
 
     }
 </style>
