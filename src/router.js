@@ -29,6 +29,7 @@ import suggest from "./components/cubcomponent/suggest.vue";
 import suggestdeal from "./components/root/suggestdeal.vue";
 import allseat from "./components/seat/allseat.vue";
 import seatinfo from "./components/seat/seatinfo.vue";
+import myseatinfo from "./components/seat/myseatinfo.vue";
 var router=new VueRouter({
     routes:
         [
@@ -44,6 +45,7 @@ var router=new VueRouter({
             {path:'/error',component:error},
             {path:'/member/su/userinfo',component:userinfo},
             {path:'/member/su/suggest',component:suggest},
+            {path:'/member/su/myseat',component:myseatinfo},
             {path:'/member/su/root',component:root},
             {path:'/book/bookinfo/:id',component:bookinfo},
             {path:'/member/su/mycomment',component:mycomments},
