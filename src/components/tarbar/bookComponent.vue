@@ -1,8 +1,19 @@
 <template>
     <div>
         <h1 class="h1-titile-index">图书列表</h1>
+        <!--搜索框-->
         <div class="mui-input-row mui-search search-box" >
             <input type="search" class="mui-input-clear mui-input-clear" placeholder="搜索图书" v-model="keyword">
+        </div>
+        <!--  顶部滑动条-->
+        <div id="slider" class="mui-slider ">
+            <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+                <div class="mui-scroll">
+                    <a :class="['mui-control-item', item.bookclass==0?'mui-active':'']"  v-for="item in cates" :key="item.bookclass" @click="getbooks(item.bookclass)">
+                        {{item.bookclassname}}
+                    </a>
+                </div>
+            </div>
         </div>
 
         <div class="book-list">
@@ -26,9 +37,39 @@
             return{
                 bookList:[],
                 keyword:'',//搜索关键字
+                cates:[],//所有分类数组
             }
         },
         methods:{
+            getallCategory(){
+                //获取图书分类
+                this.$http.get('api/getimgcategory').then(result=>{
+                    if(result.body.status===200){
+                        //手动拼接出全部分类
+                        result.body.message.unshift({bookclassname:"全部",bookclass:0})
+                        this.cates=result.body.message
+                        //console.log(this.cates)
+                    }else{
+                        Toast("获取失败")
+                    }
+                })
+            },
+            getbooks(cateid){
+                //根据id获取图片
+                this.$http.get("api/getbooks?bookclass="+cateid).then(result=>{
+                    if(cateid===0){
+                        this.getBookList();
+                    }else
+                    {
+                        if(result.body.status===200){
+                            this.bookList=result.body.message
+                        }else{
+                            Toast("获取失败")
+                        }
+                    }
+
+                })
+            },
             getBookList(){
                 this.$http.get('api/getallbook').then(result=>{
                     if(result.status===200){
@@ -61,6 +102,7 @@
         },
         created() {
             this.getBookList();
+            this.getallCategory();
 
         },
         mounted() {
@@ -71,6 +113,7 @@
 </script>
 
 <style scoped>
+    *{touch-action: pan-y}
     .book-list{
         display: flex;
         flex-wrap: wrap;

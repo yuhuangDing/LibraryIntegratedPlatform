@@ -19,6 +19,13 @@
                         <input type="text" class="mui-input-clear" placeholder="请输入图书ISBN" v-model="bookisbn">
                     </div>
                 </li>
+<!--                <li class="mui-table-view-cell">-->
+<!--                    <div class="mui-input-row">-->
+<!--                        <label>图书类别</label>-->
+<!--                        <mt-picker :slots="slots" @change="onValuesChange" class="pickclass" :visible-item-count="1"></mt-picker>-->
+
+<!--                    </div>-->
+<!--                </li>-->
                 <li class="mui-table-view-cell">
                     <div class="mui-input-row">
                         <label>作者</label>
@@ -66,21 +73,58 @@
 
 <script>
     import {Toast} from 'mint-ui';
-
     export default {
         name: "upbookAd",
         data(){
             return{
                 bookname:'',
                 bookisbn:'',
+                bookclass:'',
                 bookwriter:'',
                 booknum:'',
                 bookinfo:'',
+                classname:[],
                 imageUrl: "../../images/fm1.png",
+                slots: [
+                    {
+                        flex: 1,
+                        values: [],
+                        className: 'slot1',
+                        textAlign: 'left',
+
+                    },
+                ]
 
             }
         },
         methods:{
+            onValuesChange(picker, values) {
+
+                this.classname.some(item=>{
+                    if(item.bookclassname===values){
+                        console.log(item.bookclass);
+                        return
+                    }
+                })
+            },
+
+            getallCategory(){
+                //获取图书分类
+
+                this.$http.get('api/getimgcategory').then(result=>{
+                    if(result.body.status===200){
+
+                        this.classname=result.body.message
+                        this.classname.forEach(item=>{
+                            this.slots[0].values.push(item.bookclassname);
+                        })
+                        //console.log(this.cates)
+                    }else{
+                        Toast("获取失败")
+                    }
+                })
+            },
+
             addbook(){
                 if(this.bookname.length===0||this.bookisbn.length===0||this.bookwriter.length===0
                     ||this.booknum.length===0||this.bookinfo.length===0){
@@ -90,7 +134,7 @@
                     });
                     return;
                 }else{
-                    let data={bookname:this.bookname,isbn:this.bookisbn,bookinfo:this.bookinfo,bookwriter:this.bookwriter,booknum:this.booknum,bookimg:this.imageUrl};
+                    let data={bookname:this.bookname,isbn:this.bookisbn,bookclass:this.bookclass,bookinfo:this.bookinfo,bookwriter:this.bookwriter,booknum:this.booknum,bookimg:this.imageUrl};
                     this.$http.post('api/addnewbook',data).then(result=>{
                         if(result.status===200){
                             Toast({
@@ -129,6 +173,9 @@
             },
 
 
+        },
+        created() {
+            this.getallCategory();
         }
     }
 </script>
@@ -178,4 +225,5 @@
         margin-top: -6px;
         margin-left: 12%;
     }
+
 </style>
