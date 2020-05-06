@@ -71,7 +71,7 @@
                 this.$refs.pickerStartTime.open();
             },
             handleConfirmStartTime () {
-                console.log(this.pickerValueStartTime);
+                //console.log(this.pickerValueStartTime);
             },
             gobackbookinfo(){
                 this.$router.go(-1);
@@ -80,7 +80,7 @@
                 this.$http.get("api/bookinfo?id="+id).then(result=>{
                     if(result.status===200){
                         this.bookInfoList=result.body.message;
-                        console.log(result.body.message);
+                        //console.log(result.body.message);
                     }
                 });
 
@@ -93,7 +93,7 @@
                 this.$http.post('api/ishavebook',data).then(result=>{
                     if(result.status===200){
                         this.ishavebookinfo=JSON.parse(result.body.message);
-                        console.log('+++'+result.body.message);
+                       // console.log('+++'+result.body.message);
                     }else{
                         Toast({
                             message:"获取数据失败，检查连接",
@@ -127,6 +127,7 @@
                         username: this.name,
                         bookname: this.bookInfoList.bookname,
                         isbn: this.bookInfoList.isbn,
+                        bookclass:this.bookInfoList.bookclass,
                         orderbooknum: 1,
                         ordertime: formatDate(new Date()),
                         recivertime: formatDate(this.pickerValueStartTime),
@@ -149,7 +150,15 @@
                         });
                     }
                 }
+                this.updatebook();
                 this.ishavebook();
+            },
+            updatebook(){
+                this.$http.get('api/updatebooknum?isbn='+this.bookInfoList.isbn).then(result=>{
+                    if (result.status === 200) {
+                        console.log("Update ok!");
+                    }
+                })
             }
 
         },

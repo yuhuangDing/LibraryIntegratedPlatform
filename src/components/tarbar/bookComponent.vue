@@ -139,9 +139,10 @@
 
     }
     .booksimg{
-        width: 170px;
+        display: block;
+        margin: 0 auto;
+        width: 160px;
         height: 210px;
-        margin: 2px 0;
     }
     .h1-titile{
 

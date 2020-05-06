@@ -12,14 +12,7 @@
                 </div>
             </div>
         </div>
-    <div class="mui-card" v-show="flag">
-        <div class="mui-card-content">
-            <div class="mui-card-content-inner">
-                <p class="mycomment-w-p">当前暂无评论数据哦，快去评论吧！</p>
 
-            </div>
-        </div>
-    </div>
     <div class="mui-card" v-for="item in Myseat" :key="item.id">
         <div class="mui-card-header">
             <div>
