@@ -7,8 +7,25 @@
         <h3 class="myicon-h3">欢迎用户</h3>
         <h4 class="myicon-h3">{{name}}</h4>
 
-        <hr/>
+        <div class="suggest-box">
+            <div class="suggest-title">&nbsp;今&nbsp;日&nbsp;推&nbsp;荐</div>
+            <div class="suggest-item-emptry" v-if="classflag">
+                <div>
+                    <p class="suggestbookname" style="font-size: 16px;line-height: 80px;">暂无推荐，快去借书吧！</p>
+                </div>
+            </div>
+            <router-link v-show="!classflag" tag="div" class="suggest-item" :to=" '/book/bookinfo/'+item.id" v-for="item in bookinfolist1" :key="item.id">
+                <div class="suggestbook-img">
+                    <img :src="item.bookimg" width="70" height="60">
+                </div>
+                <div>
+                    <p class="suggestbookname">{{item.bookname}}</p>
+                </div>
+            </router-link>
+
+        </div>
         <div>
+
             <ul class="mui-table-view">
                 <router-link to="/member/su/userinfo" class="mui-table-view-cell" tag="li">个人信息</router-link>
                 <router-link class="mui-table-view-cell" to="/book" tag="li">预约图书</router-link>
@@ -20,7 +37,7 @@
             </ul>
         </div>
         <div class="myicon-btn">
-            <mt-button type="primary" plain size="normal" class="btn-dl" @click="quit">退出登陆</mt-button>
+            <mt-button type="danger" plain size="normal" class="btn-dl" @click="quit">退出登陆</mt-button>
 
         </div>
 
@@ -35,7 +52,10 @@
         data(){
             return {
                 flag:false,//管理员选项展示
-                name:''
+                name:'',
+                bookinfolist:[],
+                bookinfolist1:[],
+                classflag:false,
             }
         },
         mounted(){
@@ -58,20 +78,90 @@
             quit(){
                 delCookie('username');
                 delCookie('Admin');
+                delCookie('bookclassname');
                 this.$store.commit('openAdmin','quit');
-
                 Toast({
                     message: '退出成功',
                     duration: 1000
                 });
                 this.$router.push('/home')
+            },
+
+            getsuggestbookinfo(){
+                console.log('hi'+getCookie('bookclassname'))
+                var bookclass=getCookie('bookclassname')
+                this.$http.get('api/getsuggestbooks?bookclass='+bookclass).then(result=>{
+                    if(result.body.status===200){
+                        this.bookinfolist=result.body.message;
+                        this.bookinfolist=this.bookinfolist.reverse();
+                        if(this.bookinfolist.length===0){
+                            this.classflag=true;
+                        }
+                        if(this.bookinfolist.length>3){
+                          this.bookinfolist.forEach((item,i)=>{
+                              if(i>=3) return;
+                              else{
+                                  this.bookinfolist1.push(item);
+                              }
+                          })
+                        }
+                        console.log(this.bookinfolist1)
+                    }
+                })
+
             }
         },
+        created() {
+           //
+            this.getsuggestbookinfo();
+        }
 
     }
 </script>
 
 <style scoped>
+    .suggest-box{
+        position: relative;
+        height: 100px;
+        margin: 10px 10px ;
+    }
+    .suggest-title{
+        margin: 8px 20px 5px 5px;
+        float: left;
+        writing-mode: vertical-rl;
+
+    }
+    .suggest-item{
+        float: left;
+        width: 95px;
+        height: 100px;
+        margin-left: 10px;
+        margin-top: 5px;
+        border:1px solid #cccccc;
+        border-radius: 5px;
+    }
+
+    .suggest-item-emptry{
+        float: left;
+        width: 200px;
+        height: 100px;
+        margin-left: 10px;
+        margin-top: 5px;
+        border:1px solid #cccccc;
+        border-radius: 5px;
+    }
+    .suggestbook-img{
+        height: 60px;
+        width: 70px;
+        margin: 5px auto 0;
+
+    }
+    .suggestbookname{
+        margin: 3px 0 0 0;
+        font-size: 12px;
+        color: #555555;
+        text-align: center;
+    }
     .member-container{
         background-color: white;
         margin-top: 20px;
@@ -83,22 +173,21 @@
         color: #999999;
     }
     .myicon{
-        margin-top: 15px;
+        margin-top: 10px;
         display: flex;
         justify-content: center;
 
-
     }
     .myicon-img{
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border: 3px #cccccc solid;
         border-radius: 50%;
 
     }
     .myicon-h3{
-        margin-top: 15px;
-        margin-bottom: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px;
         text-align: center;
         font-size: 25px;
         color: #8f8f94;

@@ -53,6 +53,7 @@
                     //let data = {'username':this.userinfo.username,'password':this.userinfo.password}
                    var tusername=this.userinfo.username;
                     var tpassword=this.userinfo.password;
+                    this.getsuggestclass();
                     /*接口请求*/
                     this.$http.get('api/login?username='+tusername+'&password='+tpassword).then((res)=>{
                         console.log(res);
@@ -94,7 +95,20 @@
 
                 }
 
-            }
+            },
+            getsuggestclass(){
+                var name=this.userinfo.username;
+                var bookclass;
+                this.$http.get('api/getsuggestbook?username='+name).then(result=>{
+                    if(result.body.status===200){
+                        bookclass=result.body.message;
+                        if(bookclass===undefined)
+                            return;
+                        setCookie('bookclassname',bookclass.bookclass);
+                    }
+                })
+
+            },
         }
 
 
