@@ -10,6 +10,8 @@
             <form class="info-form">
                 <label class="infotext">用户名：</label>
                 <input type="text" v-model="username" class="infoinput"><br/>
+                <label class="infotext">姓&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                <input type="text" v-model="name" class="infoinput"><br/>
                 <label class="infotext">密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
                 <input type="password" v-model="password"  class="infoinput"><br/>
                 <label class="infotext">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
@@ -35,6 +37,7 @@
         data(){
             return{
                 username:'',
+                name:'',
                 password:'',
                 email:'',
                 phone:'',
@@ -50,7 +53,7 @@
                     });
                     this.username=this.password=this.email=this.phone=''
                 }else {
-                    let data = {'username':this.username,'password':this.password,'email':this.email,'phone':this.phone,userps:this.userps};
+                    let data = {'username':this.username,'name':this.name,'password':this.password,'email':this.email,'phone':this.phone,userps:this.userps};
                     this.$http.post('api/adduser',data).then((res)=>{
                         console.log(res);
                         console.log(res.body.list);
@@ -59,7 +62,7 @@
                                message: "注册成功",
                                duration: 1000
                            });
-                            this.username=this.password=this.email=this.phone='';
+                            this.username=this.password=this.email=this.phone=this.name='';
                             /*注册成功之后再跳回登录页*/
                             setTimeout(function(){
                               this.$router.push('/member/loginuser')

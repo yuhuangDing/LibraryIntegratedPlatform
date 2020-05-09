@@ -11,6 +11,10 @@
                 <span class="info-span">{{username}}</span>
                 <img class="info-icon" slot="icon" src="../../images/info-username.png" width="25" height="25">
             </mt-cell>
+            <mt-cell title="姓名：">
+                <span class="info-span">{{name}}</span>
+                <img class="info-icon" slot="icon" src="../../images/info-username.png" width="25" height="25">
+            </mt-cell>
             <mt-cell title="邮 箱：">
                 <span class="info-span">{{email}}</span>
                 <img class="info-icon" slot="icon" src="../../images/info-email.png" width="25" height="25">
@@ -30,6 +34,10 @@
             <ul class="mui-table-view" >
                 <mt-cell title="用户名：">
                     <span class="info-span">{{username}}</span>
+                    <img class="info-icon" slot="icon" src="../../images/info-username.png" width="25" height="25">
+                </mt-cell>
+                <mt-cell title="姓名：">
+                    <span class="info-span">{{name}}</span>
                     <img class="info-icon" slot="icon" src="../../images/info-username.png" width="25" height="25">
                 </mt-cell>
                 <mt-cell title="邮 箱：">
@@ -88,6 +96,7 @@
                 userps:'',
                 password:'',
                 password1:'',
+                name:'',
                 flag:true,//指定展示默认页面或者是切换到修改模式
                 flag1:false,//指定个人编辑模式
                 flag2:false,
@@ -100,6 +109,7 @@
                     console.log(res.body.message);
                     this.email=res.body.message.email;
                     this.phone=res.body.message.phone;
+                    this.name=res.body.message.name;
                     if(parseInt(res.body.message.userps)===1){
                         this.userps='普通用户';
                     }else if(res.body.message.userps==='admin'){
