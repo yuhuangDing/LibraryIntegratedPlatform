@@ -6,8 +6,8 @@
         <div class="seat-bigbox">
             <div class="seat-box" v-for="item in allseat" :key="item.id">
                 <div @click="toSeatinfo(item.id)">
-                    <img class="seat-img" v-if="item.ishavepeople==='N'||item.ishavepeople==='D'" src="../../images/zw.png" width="40px" height="40px">
-                    <img class="seat-img" v-if="item.ishavepeople==='Y'" src="../../images/zwx.png" width="40px" height="40px">
+                    <img class="seat-img" v-if="item.IsOkToOrder==='Y'" src="../../images/zw.png" width="40px" height="40px">
+                    <img class="seat-img" v-if="item.IsOkToOrder==='D'||item.IsOkToOrder==='N'" src="../../images/zwx.png" width="40px" height="40px">
                     <p>{{item.seatc}}层-{{item.seatw}}号</p>
                 </div>
             </div>

@@ -1,0 +1,28 @@
+-- ----------------------------
+-- Procedure structure for cancelOrder（函数）
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `cancelOrder`;
+delimiter ;;
+CREATE DEFINER=`young`@`%` PROCEDURE `cancelOrder`()
+BEGIN
+/* 更新userseat表的*/
+	UPDATE userseat SET isok = "N" WHERE current_time() > ordertimeend AND isok = "D";
+/* 更新allseat表的*/
+	UPDATE allseat SET ishavepeople = "N",IsOkToOrder = "Y" ,begintime = NULL,endtime = NULL WHERE current_time() > endtime;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Event structure for FindCO  （事件）
+-- ----------------------------
+DROP EVENT IF EXISTS `FindCO`;
+delimiter ;;
+CREATE DEFINER = `young`@`%` EVENT `FindCO`
+ON SCHEDULE
+EVERY '5' MINUTE STARTS '2020-05-07 23:55:24'
+DO call cancelOrder()
+;;
+delimiter ;
+
+SET FOREIGN_KEY_CHECKS = 1;

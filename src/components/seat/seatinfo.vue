@@ -36,6 +36,7 @@
 
 <script>
     import {getCookie} from "../../assets/js/cookie";
+    import {Toast} from "mint-ui";
     export default {
         name: "seatinfo",
         data(){
@@ -69,8 +70,9 @@
                 this.$http.get('api/getseatinfo?id='+id).then(result=>{
                     if(result.status===200){
                         //console.log(result.body.message)
-                        if(result.body.message.ishavepeople==='Y')
+                        if(result.body.message.IsOkToOrder==='D'||result.body.message.IsOkToOrder==='N')
                             this.display=true;
+                        //console.log(this.display)
                         this.seatinfo=result.body.message;
 
                        // console.log(this.seatinfo)
@@ -81,6 +83,45 @@
                 this.$router.go(-1);
             },
             orderseat(){
+
+                var formatDate = function (date) {
+                    var y = date.getFullYear();
+                    var m = date.getMonth() + 1;
+                    m = m < 10 ? ('0' + m) : m;
+                    var d = date.getDate();
+                    d = d < 10 ? ('0' + d) : d;
+                    var h = date.getHours();
+                    var minute = date.getMinutes();
+                    minute = minute < 10 ? ('0' + minute) : minute;
+                    var second = date.getSeconds();
+                    second = minute < 10 ? ('0' + second) : second;
+                    return y + '-' + m + '-' + d + ' ' + h + ':' + minute + ':' + second;
+                };
+                /*组织预约座位数据*/
+                var data={id:this.seatinfo.id,IsOkToOrder:'D',ishavepeople:'N',begintime:formatDate(new Date()),endtime:formatDate(this.pickerValueStartTime)};
+                //console.log(data)
+                this.$http.post('api/orderseat',data).then(result=>{
+                    if(result.status===200){
+                        Toast({
+                            message: '预约成功，请在约定时间到馆入座',
+                            duration: 3000
+                        });
+                    }else{
+                        Toast({
+                            message: '预约失败，错误代码 Error:0x0a',
+                            duration: 3000
+                        });
+                    }
+                });
+                var data1={username:this.name,ordertimebegin:data.begintime,ordertimeend:data.endtime,seatc:this.seatinfo.seatc,seatw:this.seatinfo.seatw,isok:'D'};
+                this.$http.post('api/adduserseat',data1).then(result=>{
+                    if(result.status===200){
+                        // console.log('加入表，ok')
+                    }
+                });
+
+                this.getseatinfo();
+
 
             }
         },

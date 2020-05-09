@@ -19,13 +19,11 @@
                 <p class="mycomment-pl-p">预约座位：&nbsp;&nbsp;&nbsp;&nbsp;{{item.seatc}}层&nbsp;&nbsp;-&nbsp;&nbsp;{{item.seatw}}号</p>
                 <p class="mycomment-pl-p">预约提交时间：{{item.ordertimebegin|dataFormat}}</p>
                 <p class="mycomment-pl-p">预约到座时间：{{item.ordertimeend|dataFormat}}
-                    <a v-show="item.displaycomment==='Y'" href="#" class="mycomment-a-delete" @click.prevent="delcomment(item.id)">
-                        <span class="mui-icon mui-icon-close"></span>删除评论
-                    </a>
-                    <a v-show="item.displaycomment==='N'" class="mycomment-a-delete1">此评论已删除</a>
+
                 </p>
                 <p class="mycomment-pl-p">预约状态：{{item.isok}}
                     <img v-show="item.isok==='已完成'" src="../../images/ok.png" width="25px" height="25px" class="myorder-icon">
+                    <img v-show="item.isok==='待离座'" src="../../images/ddlk.png" width="25px" height="25px" class="myorder-icon">
                     <img v-show="item.isok==='待入座'" src="../../images/dd.png" width="25px" height="25px" class="myorder-icon">
                     <img v-show="item.isok==='已取消'" src="../../images/qx.png" width="25px" height="25px" class="myorder-icon">
                 </p>
@@ -33,6 +31,7 @@
                     <mt-button type="primary" size="normal" plain @click="intoseat(item.id,'Y')">确认入座</mt-button>
                     <mt-button type="danger" size="normal" plain  @click="intoseat(item.id,'N')">取消预约</mt-button>
                 </p>
+                <mt-button  v-show="item.isok==='待离座'" type="default" size="normal" plain  @click="leaveseat(item.id)">离座</mt-button>
             </div>
         </div>
     </div>
@@ -42,7 +41,7 @@
 
 <script>
     import {getCookie} from "../../assets/js/cookie";
-    import {Toast} from "mint-ui";
+    import {Toast,MessageBox} from "mint-ui";
 
     export default {
         name: "myseatinfo",
@@ -64,8 +63,7 @@
                             this.Myseat=result.body.message
                             this.Myseat.forEach(item=>{
                                 if(item.isok==='Y'){
-                                    item.isok='已完成';
-
+                                    item.isok='待离座';
                                 }
                                 else if(item.isok==='N')
                                 {
@@ -75,6 +73,11 @@
                                 {
                                     item.isok='待入座';
                                 }
+                                else if(item.isok==='S')
+                                {
+                                    item.isok='已完成';
+                                }
+
 
                             })
 
@@ -91,10 +94,16 @@
                     }
                 });
                 if(opt==='Y'){
-                    var data={username:seatinfo.username,seatc:seatinfo.seatc,seatw:seatinfo.seatw,opt:'Y'};
+                    var data={username:seatinfo.username,seatc:seatinfo.seatc,seatw:seatinfo.seatw,opt:'Y',id:seatinfo.id};
                 }
                 else {
-                    var data={username:seatinfo.username,seatc:seatinfo.seatc,seatw:seatinfo.seatw,opt:'N'};
+                    var data={username:seatinfo.username,seatc:seatinfo.seatc,seatw:seatinfo.seatw,opt:'N',id:seatinfo.id};
+                    let seatdata={seatc:seatinfo.seatc,seatw:seatinfo.seatw};
+                    this.$http.post('api/leaveseatandupdate',seatdata).then(result=>{
+                        if(result.status===200){
+                            console.log("OK")
+                        }
+                    });
                 }
                 this.$http.post('api/seatupdate',data).then(result=>{
                     if(result.status===200){
@@ -107,9 +116,41 @@
                 this.getmyseat();
 
 
+            },
+            leaveseat(id){
+                let seatinfo='';
+                this.Myseat.some((item,i)=>{
+                    if(item.id===id){
+                        seatinfo=item;
+                    }
+                });
+                console.log(seatinfo)
+                this.$http.get('api/leaveseat?id='+seatinfo.id).then(result=>{
+                    if(result.status===200){
+                        Toast({
+                            message:"离座成功",
+                            duration: 1000,
+                        });
+                    }
+                });
+                let seatdata={seatc:seatinfo.seatc,seatw:seatinfo.seatw};
+                this.$http.post('api/leaveseatandupdate',seatdata).then(result=>{
+                    if(result.status===200){
+                        console.log("OK")
+                    }
+                });
+
+
+                this.getmyseat()
             }
+
         },
         created() {
+            MessageBox({
+                title: '温馨提示',
+                message: '确认到座后，务必点击”确认入座“按钮，否则您的座位超时将被系统取消！谢谢合作！',
+                showCancelButton: false
+            });
             this.getmyseat();
         }
     }
