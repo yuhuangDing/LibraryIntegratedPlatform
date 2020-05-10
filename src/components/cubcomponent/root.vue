@@ -35,6 +35,12 @@
                         <div class="mui-media-body">预约数据分析</div>
                     </a>
                 </router-link>
+                <router-link to="/member/su/root/eOrderbookclass" tag="li" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                    <a href="#">
+                        <img src="../../images/datafx.png" class="icon-box-9">
+                        <div class="mui-media-body">分类热度分析</div>
+                    </a>
+                </router-link>
             </ul>
         </div>
     </div>

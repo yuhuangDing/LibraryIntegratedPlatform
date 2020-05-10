@@ -31,6 +31,7 @@ import allseat from "./components/seat/allseat.vue";
 import seatinfo from "./components/seat/seatinfo.vue";
 import myseatinfo from "./components/seat/myseatinfo.vue";
 import echartsOrderbooknum from "./components/root/echarts/echartsOrderbooknum.vue";
+import echartsOrderbookclass from "./components/root/echarts/echartsOrderbookclass.vue";
 var router=new VueRouter({
     routes:
         [
@@ -62,6 +63,7 @@ var router=new VueRouter({
             {path:'/allseat',component:allseat},
             {path:'/allseat/seatinfo',component:seatinfo},
             {path:'/member/su/root/eOrderbooknum',component:echartsOrderbooknum},
+            {path:'/member/su/root/eOrderbookclass',component:echartsOrderbookclass},
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
 });
