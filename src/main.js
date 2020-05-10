@@ -21,6 +21,9 @@ import '../lib/mui/css/icon.css';
 import mui from '../lib/mui/js/mui.js'
 Vue.prototype.mui=mui;
 
+/*引入echarts*/
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 
 
 //定于全局表单数据提交格式

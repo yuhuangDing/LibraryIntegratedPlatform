@@ -133,7 +133,7 @@
     }
     .suggest-item{
         float: left;
-        width: 95px;
+        width: 90px;
         height: 100px;
         margin-left: 10px;
         margin-top: 5px;

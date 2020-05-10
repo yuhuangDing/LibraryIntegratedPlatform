@@ -7,9 +7,12 @@
         </div>
         <div class="gg-box">
             <ul class="mui-table-view mui-grid-view mui-grid-9">
-                <router-link to="/member/su/root/uAd" tag="li" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
-                   <img src="../../images/ugl.png" class="icon-box-9">
-                    <div class="mui-media-body">用户管理</div></a></router-link>
+                <router-link to="/member/su/root/uAd" tag="li" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                    <a href="#">
+                       <img src="../../images/ugl.png" class="icon-box-9">
+                        <div class="mui-media-body">用户管理</div>
+                    </a>
+                </router-link>
                 <router-link to="/member/su/root/oAd" tag="li" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><a href="#">
                     <img src="../../images/yysh.png" class="icon-box-9">
                     <div class="mui-media-body">预约审核</div></a></router-link>
@@ -26,6 +29,12 @@
                     <a href="#">
                     <img src="../../images/bugfk.png" class="icon-box-9">
                     <div class="mui-media-body">反馈处理</div></a></router-link>
+                <router-link to="/member/su/root/eOrderbooknum" tag="li" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+                    <a href="#">
+                        <img src="../../images/datafx1.png" class="icon-box-9">
+                        <div class="mui-media-body">预约数据分析</div>
+                    </a>
+                </router-link>
             </ul>
         </div>
     </div>

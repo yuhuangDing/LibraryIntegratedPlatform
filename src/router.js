@@ -30,6 +30,7 @@ import suggestdeal from "./components/root/suggestdeal.vue";
 import allseat from "./components/seat/allseat.vue";
 import seatinfo from "./components/seat/seatinfo.vue";
 import myseatinfo from "./components/seat/myseatinfo.vue";
+import echartsOrderbooknum from "./components/root/echarts/echartsOrderbooknum.vue";
 var router=new VueRouter({
     routes:
         [
@@ -60,6 +61,7 @@ var router=new VueRouter({
             {path:'/member/su/root/suggestdeal',component:suggestdeal},
             {path:'/allseat',component:allseat},
             {path:'/allseat/seatinfo',component:seatinfo},
+            {path:'/member/su/root/eOrderbooknum',component:echartsOrderbooknum},
         ],
     linkActiveClass:'mui-active'//覆盖选择高亮类，
 });

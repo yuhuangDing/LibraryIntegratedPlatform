@@ -22,6 +22,7 @@
                 <hr/>
                 <h3 style="text-align: center">功能内测区</h3>
                 <router-link class="mui-table-view-cell" tag="li" to="/allseat">座位预约</router-link>
+<!--                <router-link class="mui-table-view-cell" tag="li" to="/member/echarts">Echarts测试</router-link>-->
             </ul>
         </div>
 
