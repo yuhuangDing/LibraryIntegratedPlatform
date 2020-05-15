@@ -15,7 +15,7 @@
                 <div class="mui-card-footer">
                     <div class="charts-text-box-text">
                         <p>最受欢迎的分类：{{classname}}</p>
-                        <p>最受欢迎的分类占比：{{bfb}}</p>
+                        <p>最受欢迎的分类占比：{{bfb}}%</p>
 
                     </div>
                 </div>
@@ -74,7 +74,8 @@
                                 }
                             }
                             this.bfb=max/sum;
-                            this.bfb=this.bfb.toFixed(2)
+                            this.bfb=this.bfb.toFixed(2);
+                            this.bfb=this.bfb*100;
                             // console.log(classname+"*****"+hotclassnum+"sss"+sum)
                             // console.log(classdata);
 
